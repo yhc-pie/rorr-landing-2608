@@ -10,10 +10,13 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Gothic+A1:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 <style>
   html, body { margin:0; padding:0; background:#0A0A0F; }
-  body { font-family:'Barlow', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  body { font-family:'Barlow','Pretendard Variable','Pretendard',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  html[lang="ko"] body { word-break:keep-all; }
+  html[lang="ko"] h1, html[lang="ko"] h2 { letter-spacing:-0.03em; line-height:1.16; }
   * { box-sizing:border-box; }
   a { color:#35F0DC; text-decoration:none; }
   a:hover { color:#8CFFF1; }
@@ -37,6 +40,10 @@
     <div style="display:flex; align-items:center; gap:clamp(14px,2.2vw,30px); flex-wrap:wrap">
       <a href="RORR%20Matches.dc.html" style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; color:#9DA1B4" style-hover="color:#E8E9F0">Matches</a>
       <a href="RORR%20About.dc.html" style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; color:#9DA1B4" style-hover="color:#E8E9F0">About</a>
+      <div style="display:flex; align-items:center; gap:2px; padding:3px; border:1px solid rgba(255,255,255,0.16); border-radius:999px">
+        <button onClick="{{ setEn }}" style="cursor:pointer; border:none; border-radius:999px; padding:6px 11px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; font-weight:700; letter-spacing:0.1em; transition:background .25s ease, color .25s ease; background: {{ enBg }}; color: {{ enFg }}">EN</button>
+        <button onClick="{{ setKo }}" style="cursor:pointer; border:none; border-radius:999px; padding:6px 11px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; font-weight:700; letter-spacing:0.1em; transition:background .25s ease, color .25s ease; background: {{ koBg }}; color: {{ koFg }}">KO</button>
+      </div>
       <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:9px; padding:10px 18px; border-radius:999px; background:#35F0DC; color:#04141A; font-weight:700; font-size:14px; letter-spacing:0.02em; box-shadow:0 0 24px rgba(53,240,220,0.25)" style-hover="background:#8CFFF1; color:#04141A">
         <span style="width:8px; height:8px; border-radius:50%; background:#04141A; display:inline-block"></span>Add to Chrome
       </a>
@@ -46,25 +53,25 @@
   <section id="top" data-screen-label="Hero" style="position:relative; padding:clamp(56px,8vw,110px) clamp(16px,4vw,56px) clamp(60px,7vw,96px); max-width:1280px; margin:0 auto">
     <div style="display:flex; align-items:center; gap:10px; margin-bottom:22px">
       <span style="width:7px; height:7px; border-radius:50%; background:#35F0DC; animation:livePulse 1.6s infinite"></span>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:#35F0DC">Live match intelligence · Chrome side panel</span>
+      <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:#35F0DC">Live match intelligence · Chrome side panel</span>
     </div>
-    <h1 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(38px,6.4vw,86px); line-height:0.98; letter-spacing:-0.02em; margin:0 0 20px; max-width:16ch; text-wrap:balance">The AI that knows <span style="color:#FFC24A">this</span> game, right now.</h1>
+    <h1 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(38px,6.4vw,86px); line-height:0.98; letter-spacing:-0.02em; margin:0 0 20px; max-width:16ch; text-wrap:balance">The AI that knows <span style="color:#FFC24A">this</span> game, right now.</h1>
     <p style="font-size:clamp(16px,1.5vw,21px); line-height:1.55; color:#9DA1B4; max-width:58ch; margin:0 0 40px; text-wrap:pretty">GPT knows yesterday's League. RORR knows this teamfight — every objective, every gold swing, every rotation, as it happens.</p>
 
     <div style="display:flex; gap:clamp(24px,4vw,56px); align-items:flex-end; flex-wrap:wrap">
       <div style="flex:1 1 520px; min-width:0">
         <div style="position:relative; border-radius:18px; padding:1px; background:linear-gradient(120deg, rgba(53,240,220,0.55), rgba(123,43,255,0.35) 45%, rgba(255,194,74,0.35))">
           <div style="display:flex; align-items:center; gap:14px; background:#0D0D14; border-radius:17px; padding:clamp(14px,1.6vw,20px) clamp(16px,1.8vw,22px)">
-            <span style="font-family:'JetBrains Mono',monospace; color:#35F0DC; font-size:15px">&gt;</span>
-            <div style="flex:1; min-width:0; font-family:'JetBrains Mono',monospace; font-size:clamp(13px,1.25vw,16px); line-height:1.5; color:#E8E9F0; min-height:24px; overflow:hidden">{{ typed }}<sc-if value="{{ showCaret }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block; width:8px; height:16px; background:#35F0DC; vertical-align:-2px; animation:caret 1s steps(1) infinite"></span></sc-if><sc-if value="{{ showHint }}" hint-placeholder-val="{{ true }}"><span style="color:#5C6076">Ask Muse anything about the game on your screen…</span></sc-if></div>
-            <button onClick="{{ onSend }}" style="flex:none; border:none; cursor:pointer; border-radius:11px; padding:11px 16px; background:rgba(53,240,220,0.14); color:#35F0DC; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px; letter-spacing:0.06em" style-hover="background:rgba(53,240,220,0.26)">ASK</button>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; color:#35F0DC; font-size:15px">&gt;</span>
+            <div style="flex:1; min-width:0; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:clamp(13px,1.25vw,16px); line-height:1.5; color:#E8E9F0; min-height:24px; overflow:hidden">{{ typed }}<sc-if value="{{ showCaret }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block; width:8px; height:16px; background:#35F0DC; vertical-align:-2px; animation:caret 1s steps(1) infinite"></span></sc-if><sc-if value="{{ showHint }}" hint-placeholder-val="{{ true }}"><span style="color:#5C6076">Ask Muse anything about the game on your screen…</span></sc-if></div>
+            <button onClick="{{ onSend }}" style="flex:none; border:none; cursor:pointer; border-radius:11px; padding:11px 16px; background:rgba(53,240,220,0.14); color:#35F0DC; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-weight:700; font-size:13px; letter-spacing:0.06em" style-hover="background:rgba(53,240,220,0.26)">ASK</button>
           </div>
         </div>
 
         <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px">
           <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="4">
-            <button onClick="{{ chip.pick }}" style="cursor:pointer; border-radius:999px; padding:9px 15px; font-family:'Barlow',sans-serif; font-size:13.5px; line-height:1.2; text-align:left; display:flex; align-items:center; gap:9px; transition:all .3s ease; background: {{ chip.bg }}; border:1px solid {{ chip.bd }}; color: {{ chip.fg }}; box-shadow: {{ chip.sh }}" style-hover="border-color:rgba(53,240,220,0.55); color:#E8E9F0">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color: {{ chip.tc }}">{{ chip.tier }}</span>{{ chip.q }}
+            <button onClick="{{ chip.pick }}" style="cursor:pointer; border-radius:999px; padding:9px 15px; font-family:'Barlow','Pretendard Variable','Pretendard',sans-serif; font-size:13.5px; line-height:1.2; text-align:left; display:flex; align-items:center; gap:9px; transition:all .3s ease; background: {{ chip.bg }}; border:1px solid {{ chip.bd }}; color: {{ chip.fg }}; box-shadow: {{ chip.sh }}" style-hover="border-color:rgba(53,240,220,0.55); color:#E8E9F0">
+              <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10px; letter-spacing:0.1em; color: {{ chip.tc }}">{{ chip.tier }}</span>{{ chip.q }}
             </button>
           </sc-for>
         </div>
@@ -72,18 +79,18 @@
         <div style="margin-top:20px; border:1px solid rgba(255,255,255,0.08); border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)); padding:clamp(16px,2vw,24px); min-height:186px">
           <div style="display:flex; align-items:center; gap:11px; margin-bottom:14px">
             <img src="assets/muse-head2.png" alt="Muse" style="width:34px; height:34px; border-radius:50%; object-fit:cover; object-position:50% 18%; border:1px solid rgba(53,240,220,0.4); background:#15151F" />
-            <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:0.06em; font-size:14px">MUSE</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:#35F0DC; border:1px solid rgba(53,240,220,0.35); border-radius:5px; padding:2px 7px">LIVE · 24:10</span>
+            <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; letter-spacing:0.06em; font-size:14px">MUSE</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.12em; color:#35F0DC; border:1px solid rgba(53,240,220,0.35); border-radius:5px; padding:2px 7px">LIVE · 24:10</span>
           </div>
           <p style="margin:0; font-size:clamp(14.5px,1.35vw,17px); line-height:1.62; color:#D5D7E2; min-height:52px; text-wrap:pretty">{{ answer }}<sc-if value="{{ streaming }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block; width:7px; height:15px; background:#FFC24A; vertical-align:-2px; margin-left:3px; animation:caret .8s steps(1) infinite"></span></sc-if></p>
           <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:18px">
             <sc-for list="{{ cards }}" as="card" hint-placeholder-count="0">
               <div style="flex:1 1 190px; border:1px solid rgba(255,255,255,0.09); border-radius:13px; padding:13px 15px; background:rgba(10,10,15,0.55)">
                 <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px">
-                  <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:#8A8DA0">{{ card.label }}</span>
-                  <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6E7288">{{ card.sub }}</span>
+                  <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.14em; color:#8A8DA0">{{ card.label }}</span>
+                  <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; color:#6E7288">{{ card.sub }}</span>
                 </div>
-                <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:26px; margin-top:5px; color: {{ card.color }}">{{ card.value }}</div>
+                <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-weight:700; font-size:26px; margin-top:5px; color: {{ card.color }}">{{ card.value }}</div>
                 <sc-if value="{{ card.hasBar }}" hint-placeholder-val="{{ true }}">
                   <div style="margin-top:10px; height:6px; border-radius:99px; background:rgba(255,255,255,0.08); overflow:hidden">
                     <div style="height:100%; border-radius:99px; width: {{ card.pct }}%; background: {{ card.color }}; box-shadow:0 0 14px {{ card.color }}; transition:width .7s cubic-bezier(.2,.8,.2,1)"></div>
@@ -112,14 +119,14 @@
   <section data-screen-label="Story 01" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto; border-top:1px solid rgba(255,255,255,0.06)">
     <div style="display:flex; gap:clamp(28px,4vw,64px); align-items:center; flex-wrap:wrap">
       <div style="flex:1 1 380px; min-width:0">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 01 — THE GAP</span>
-        <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; text-wrap:balance">You stopped keeping up. Not because you stopped caring.</h2>
+        <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 01 — THE GAP</span>
+        <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; text-wrap:balance">You stopped keeping up. Not because you stopped caring.</h2>
         <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:52ch; margin:0 0 26px; text-wrap:pretty">New patch, new meta, rosters you don't recognize, a jungle route that apparently decided the game. The match is still on — you're just watching from further away every split.</p>
-        <p style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:clamp(19px,2vw,27px); color:#FFC24A; margin:0">Catch up with League again — free, from your next match.</p>
+        <p style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:clamp(19px,2vw,27px); color:#FFC24A; margin:0">Catch up with League again — free, from your next match.</p>
         <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:26px">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8DA0; border:1px dashed rgba(255,255,255,0.14); border-radius:8px; padding:7px 12px">"who is that mid laner?"</span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8DA0; border:1px dashed rgba(255,255,255,0.14); border-radius:8px; padding:7px 12px">"why is everyone screaming?"</span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8DA0; border:1px dashed rgba(255,255,255,0.14); border-radius:8px; padding:7px 12px">"is this comeback real?"</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; color:#8A8DA0; border:1px dashed rgba(255,255,255,0.14); border-radius:8px; padding:7px 12px">"who is that mid laner?"</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; color:#8A8DA0; border:1px dashed rgba(255,255,255,0.14); border-radius:8px; padding:7px 12px">"why is everyone screaming?"</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; color:#8A8DA0; border:1px dashed rgba(255,255,255,0.14); border-radius:8px; padding:7px 12px">"is this comeback real?"</span>
         </div>
       </div>
       <div style="flex:1 1 300px; display:flex; justify-content:center; position:relative; min-width:240px">
@@ -131,20 +138,20 @@
   </section>
 
   <section data-screen-label="Story 02" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto">
-    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 02 — WATCH TOGETHER</span>
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:20ch; text-wrap:balance">A game you watched alone becomes a game you watch together.</h2>
+    <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 02 — WATCH TOGETHER</span>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:20ch; text-wrap:balance">A game you watched alone becomes a game you watch together.</h2>
     <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:56ch; margin:0 0 40px; text-wrap:pretty">Muse reads the live feed the same second you do. Kill, steal, ace — she reacts before the caster finishes the sentence.</p>
 
     <div style="display:flex; gap:clamp(20px,3vw,40px); align-items:stretch; flex-wrap:wrap">
       <div style="flex:2 1 480px; min-width:280px; border:1px solid rgba(255,255,255,0.09); border-radius:16px; overflow:hidden; background:#08080D">
         <div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.07)">
           <span style="width:8px; height:8px; border-radius:50%; background:#FF5F57"></span><span style="width:8px; height:8px; border-radius:50%; background:#FFBD2E"></span><span style="width:8px; height:8px; border-radius:50%; background:#28C840"></span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#6E7288; margin-left:8px">youtube.com/@lck · LIVE</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; color:#6E7288; margin-left:8px">youtube.com/@lck · LIVE</span>
         </div>
         <div style="position:relative; aspect-ratio:16/9; overflow:hidden; container-type:size; background:linear-gradient(160deg,#101623,#080810 60%)">
           <div style="position:absolute; inset:0; background:repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 46px), repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 46px)"></div>
           <div style="position:absolute; top:0; left:0; right:0; height:60px; background:linear-gradient(90deg, rgba(53,240,220,0.05), transparent); animation:scan 6s linear infinite"></div>
-          <div style="position:absolute; top:14px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:14px; background:rgba(8,8,13,0.82); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:8px 16px; font-family:'JetBrains Mono',monospace">
+          <div style="position:absolute; top:14px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:14px; background:rgba(8,8,13,0.82); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:8px 16px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace">
             <span style="color:#E8E9F0; font-weight:700; font-size:14px">T1</span>
             <span style="color:#FFC24A; font-weight:700; font-size:18px">14</span>
             <span style="color:#6E7288; font-size:12px">24:10</span>
@@ -157,7 +164,7 @@
             <sc-for list="{{ blueTeam }}" as="p" hint-placeholder-count="5">
               <div style="display:flex; align-items:center; gap:6px">
                 <div style="width:min(26px,7.5cqh); height:min(26px,7.5cqh); border-radius:4px; border:1px solid rgba(53,240,220,0.5); background: {{ p.bg }}; display:flex; align-items:flex-end; justify-content:flex-end">
-                  <span style="font-family:'JetBrains Mono',monospace; font-size:8px; color:#04141A; background:#35F0DC; border-radius:2px; padding:0 2px; margin:1px">{{ p.lv }}</span>
+                  <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:8px; color:#04141A; background:#35F0DC; border-radius:2px; padding:0 2px; margin:1px">{{ p.lv }}</span>
                 </div>
                 <div style="width:min(44px,13cqh); height:min(5px,1.6cqh); border-radius:99px; background:rgba(255,255,255,0.12); overflow:hidden"><div style="height:100%; width: {{ p.hp }}%; background:#35F0DC"></div></div>
               </div>
@@ -167,7 +174,7 @@
             <sc-for list="{{ redTeam }}" as="p" hint-placeholder-count="5">
               <div style="display:flex; align-items:center; gap:6px; flex-direction:row-reverse">
                 <div style="width:min(26px,7.5cqh); height:min(26px,7.5cqh); border-radius:4px; border:1px solid rgba(255,94,94,0.5); background: {{ p.bg }}; display:flex; align-items:flex-end">
-                  <span style="font-family:'JetBrains Mono',monospace; font-size:8px; color:#1A0505; background:#FF7A7A; border-radius:2px; padding:0 2px; margin:1px">{{ p.lv }}</span>
+                  <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:8px; color:#1A0505; background:#FF7A7A; border-radius:2px; padding:0 2px; margin:1px">{{ p.lv }}</span>
                 </div>
                 <div style="width:min(44px,13cqh); height:min(5px,1.6cqh); border-radius:99px; background:rgba(255,255,255,0.12); overflow:hidden; direction:rtl"><div style="height:100%; width: {{ p.hp }}%; background:#FF7A7A"></div></div>
               </div>
@@ -189,15 +196,15 @@
               <div style="flex:1; border-radius:1px; height: {{ g.h }}%; background: {{ g.c }}"></div>
             </sc-for>
           </div>
-          <div style="position:absolute; bottom:16px; left:16px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#35F0DC; display:flex; align-items:center; gap:7px">
+          <div style="position:absolute; bottom:16px; left:16px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.14em; color:#35F0DC; display:flex; align-items:center; gap:7px">
             <span style="width:7px; height:7px; border-radius:50%; background:#35F0DC; animation:livePulse 1.4s infinite"></span>BARON CONTEST · 00:38
           </div>
         </div>
       </div>
 
       <div style="flex:1 1 260px; min-width:230px; border:1px solid rgba(53,240,220,0.22); border-radius:16px; background:linear-gradient(180deg, rgba(53,240,220,0.06), rgba(123,43,255,0.06)); padding:16px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; position:relative; overflow:hidden; min-height:340px; padding-top:38px">
-        <div style="position:absolute; z-index:2; top:14px; left:16px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.16em; color:#8A8DA0; text-shadow:0 1px 6px rgba(8,8,13,0.9)">SIDE PANEL · MUSE</div>
-        <div style="position:absolute; z-index:2; top:12px; right:14px; background:rgba(10,10,15,0.75); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; color:#35F0DC; border:1px solid rgba(53,240,220,0.35); border-radius:5px; padding:2px 7px">{{ reactTag }}</div>
+        <div style="position:absolute; z-index:2; top:14px; left:16px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.16em; color:#8A8DA0; text-shadow:0 1px 6px rgba(8,8,13,0.9)">SIDE PANEL · MUSE</div>
+        <div style="position:absolute; z-index:2; top:12px; right:14px; background:rgba(10,10,15,0.75); font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10px; letter-spacing:0.16em; color:#35F0DC; border:1px solid rgba(53,240,220,0.35); border-radius:5px; padding:2px 7px">{{ reactTag }}</div>
         <img src="assets/muse-surprised.png" alt="Muse reaction" ref="{{ reactRef }}" style="width:100%; flex:1 1 0; min-height:0; object-fit:cover; object-position:50% 0%; margin-bottom:2%; -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 97%); mask-image:linear-gradient(180deg,#000 72%,transparent 97%); filter:drop-shadow(0 0 40px rgba(123,43,255,0.4)); transition:opacity .3s ease" />
         <div style="position:relative; width:100%; background:rgba(10,10,15,0.9); border:1px solid rgba(255,255,255,0.12); border-radius:14px 14px 4px 14px; padding:12px 14px; font-size:15px; line-height:1.42; color:#E8E9F0; margin-top:-10px">{{ reactLine }}</div>
       </div>
@@ -205,63 +212,63 @@
   </section>
 
   <section data-screen-label="Story 03" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto">
-    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 03 — YOUR DEPTH</span>
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:22ch; text-wrap:balance">Same teamfight. The depth is yours to choose.</h2>
+    <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 03 — YOUR DEPTH</span>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:22ch; text-wrap:balance">Same teamfight. The depth is yours to choose.</h2>
     <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:56ch; margin:0 0 40px; text-wrap:pretty">Newcomers get the turning point. Veterans get the draft, the cooldowns, the wGE+ swing. One engine, two registers.</p>
     <div style="display:flex; gap:clamp(16px,2.4vw,28px); flex-wrap:wrap">
       <div style="flex:1 1 330px; min-width:270px; border:1px solid rgba(255,194,74,0.28); border-radius:18px; padding:clamp(18px,2vw,26px); background:linear-gradient(180deg, rgba(255,194,74,0.07), rgba(255,255,255,0.015))">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px">
-          <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:14px; color:#FFC24A">NEWCOMER MODE</span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6E7288">24:10 · DRAKE</span>
+          <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:14px; color:#FFC24A">NEWCOMER MODE</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; color:#6E7288">24:10 · DRAKE</span>
         </div>
         <p style="font-size:clamp(16px,1.5vw,20px); line-height:1.55; color:#E8E9F0; margin:0 0 18px; text-wrap:pretty">"This dragon fight is where today's game gets decided. If T1 takes it, they get a buff that makes the next fight much easier — that's why everyone is walking down there."</p>
         <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#FFC24A; background:rgba(255,194,74,0.12); border-radius:7px; padding:6px 11px">WHY IT MATTERS</span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#8A8DA0; background:rgba(255,255,255,0.05); border-radius:7px; padding:6px 11px">NO JARGON</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#FFC24A; background:rgba(255,194,74,0.12); border-radius:7px; padding:6px 11px">WHY IT MATTERS</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#8A8DA0; background:rgba(255,255,255,0.05); border-radius:7px; padding:6px 11px">NO JARGON</span>
         </div>
       </div>
       <div style="flex:1 1 330px; min-width:270px; border:1px solid rgba(53,240,220,0.28); border-radius:18px; padding:clamp(18px,2vw,26px); background:linear-gradient(180deg, rgba(53,240,220,0.07), rgba(255,255,255,0.015))">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px">
-          <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:14px; color:#35F0DC">VETERAN MODE</span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6E7288">24:10 · DRAKE</span>
+          <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:14px; color:#35F0DC">VETERAN MODE</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; color:#6E7288">24:10 · DRAKE</span>
         </div>
-        <p style="font-family:'JetBrains Mono',monospace; font-size:clamp(13.5px,1.25vw,16px); line-height:1.6; color:#D5D7E2; margin:0 0 18px">Draft asymmetry pays out here: GEN's frontload needs the 3-item spike, T1 is 40s ahead on it. Flash down bot side, ult timers staggered 14s. wGE+ delta +1.9k despite a flat gold graph — the fight is already leaning.</p>
+        <p style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:clamp(13.5px,1.25vw,16px); line-height:1.6; color:#D5D7E2; margin:0 0 18px">Draft asymmetry pays out here: GEN's frontload needs the 3-item spike, T1 is 40s ahead on it. Flash down bot side, ult timers staggered 14s. wGE+ delta +1.9k despite a flat gold graph — the fight is already leaning.</p>
         <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#35F0DC; background:rgba(53,240,220,0.12); border-radius:7px; padding:6px 11px">wGE+ Δ +1.9k</span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#35F0DC; background:rgba(53,240,220,0.12); border-radius:7px; padding:6px 11px">CD MAP</span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#8A8DA0; background:rgba(255,255,255,0.05); border-radius:7px; padding:6px 11px">DRAFT LENS</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#35F0DC; background:rgba(53,240,220,0.12); border-radius:7px; padding:6px 11px">wGE+ Δ +1.9k</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#35F0DC; background:rgba(53,240,220,0.12); border-radius:7px; padding:6px 11px">CD MAP</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#8A8DA0; background:rgba(255,255,255,0.05); border-radius:7px; padding:6px 11px">DRAFT LENS</span>
         </div>
       </div>
     </div>
   </section>
 
   <section data-screen-label="Story 04" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto">
-    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 04 — NUMBERS WITH A STORY</span>
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:20ch; text-wrap:balance">The scoreboard shows what happened. Ours shows what's happening.</h2>
+    <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 04 — NUMBERS WITH A STORY</span>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:20ch; text-wrap:balance">The scoreboard shows what happened. Ours shows what's happening.</h2>
     <div style="display:flex; gap:clamp(16px,2.4vw,28px); flex-wrap:wrap; margin-top:36px">
       <div style="flex:1 1 340px; min-width:270px; border:1px solid rgba(255,255,255,0.09); border-radius:18px; padding:clamp(18px,2vw,26px); background:rgba(255,255,255,0.028)">
         <div style="display:flex; align-items:baseline; gap:12px">
-          <span style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:30px; color:#FFC24A">PCI+</span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.12em; color:#8A8DA0">MATCH CONTROL INDEX</span>
+          <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:30px; color:#FFC24A">PCI+</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.12em; color:#8A8DA0">MATCH CONTROL INDEX</span>
         </div>
         <p style="font-size:16.5px; line-height:1.58; color:#B9BCCB; margin:14px 0 20px; text-wrap:pretty">Who is holding this game — in one number. Momentum the scoreboard can't print.</p>
         <div style="display:flex; align-items:center; gap:14px; margin-bottom:8px">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; width:44px; color:#E8E9F0">T1</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:13px; width:44px; color:#E8E9F0">T1</span>
           <div style="flex:1; height:12px; border-radius:99px; background:rgba(255,255,255,0.07); overflow:hidden"><div style="height:100%; width: {{ pciT1 }}%; background:linear-gradient(90deg,#FFC24A,#FF9F1C); box-shadow:0 0 18px rgba(255,194,74,0.45); transition:width 1.1s cubic-bezier(.2,.8,.2,1)"></div></div>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:700; color:#FFC24A; width:52px; text-align:right">{{ pciT1Label }}</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:15px; font-weight:700; color:#FFC24A; width:52px; text-align:right">{{ pciT1Label }}</span>
         </div>
         <div style="display:flex; align-items:center; gap:14px">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; width:44px; color:#E8E9F0">GEN</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:13px; width:44px; color:#E8E9F0">GEN</span>
           <div style="flex:1; height:12px; border-radius:99px; background:rgba(255,255,255,0.07); overflow:hidden"><div style="height:100%; width: {{ pciGen }}%; background:linear-gradient(90deg,#4A5570,#7C89AB); transition:width 1.1s cubic-bezier(.2,.8,.2,1)"></div></div>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:700; color:#9DA1B4; width:52px; text-align:right">{{ pciGenLabel }}</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:15px; font-weight:700; color:#9DA1B4; width:52px; text-align:right">{{ pciGenLabel }}</span>
         </div>
-        <p style="font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.55; color:#FFC24A; margin:20px 0 0; border-left:2px solid rgba(255,194,74,0.5); padding-left:12px">Behind on kills, PCI+ still climbing? That's the smell of a comeback.</p>
+        <p style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12.5px; line-height:1.55; color:#FFC24A; margin:20px 0 0; border-left:2px solid rgba(255,194,74,0.5); padding-left:12px">Behind on kills, PCI+ still climbing? That's the smell of a comeback.</p>
       </div>
 
       <div style="flex:1 1 340px; min-width:270px; border:1px solid rgba(255,255,255,0.09); border-radius:18px; padding:clamp(18px,2vw,26px); background:rgba(255,255,255,0.028)">
         <div style="display:flex; align-items:baseline; gap:12px">
-          <span style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:30px; color:#35F0DC">wGE+</span>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.12em; color:#8A8DA0">WEIGHTED GOLD EARNED</span>
+          <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:30px; color:#35F0DC">wGE+</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.12em; color:#8A8DA0">WEIGHTED GOLD EARNED</span>
         </div>
         <p style="font-size:16.5px; line-height:1.58; color:#B9BCCB; margin:14px 0 20px; text-wrap:pretty">Not all gold is worth the same. wGE+ weighs where it landed, when, and on whom.</p>
         <div style="height:96px; display:flex; align-items:flex-end; gap:5px">
@@ -269,10 +276,10 @@
             <div style="flex:1; border-radius:3px; height: {{ b.h }}%; background: {{ b.c }}; transform-origin:bottom; transition:height .8s cubic-bezier(.2,.8,.2,1)"></div>
           </sc-for>
         </div>
-        <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11px; color:#6E7288; margin-top:8px">
+        <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; color:#6E7288; margin-top:8px">
           <span>10:00</span><span>18:00</span><span>24:10</span>
         </div>
-        <p style="font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.55; color:#35F0DC; margin:20px 0 0; border-left:2px solid rgba(53,240,220,0.5); padding-left:12px">Gold diff reads 0, wGE+ reads +1.9k. The game already tilted.</p>
+        <p style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12.5px; line-height:1.55; color:#35F0DC; margin:20px 0 0; border-left:2px solid rgba(53,240,220,0.5); padding-left:12px">Gold diff reads 0, wGE+ reads +1.9k. The game already tilted.</p>
       </div>
     </div>
   </section>
@@ -284,16 +291,16 @@
         <img src="assets/muse-excited.png" alt="Muse" style="position:relative; width:100%; max-width:300px; height:auto; -webkit-mask-image:linear-gradient(180deg,#000 74%,transparent 98%); mask-image:linear-gradient(180deg,#000 74%,transparent 98%); filter:drop-shadow(0 20px 44px rgba(0,0,0,0.6))" />
       </div>
       <div style="flex:1 1 380px; min-width:0">
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 05 — SHE REMEMBERS YOU</span>
-        <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; text-wrap:balance">Free reacts to the match. Plus reacts to <span style="color:#FFC24A">you</span>.</h2>
+        <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 05 — SHE REMEMBERS YOU</span>
+        <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; text-wrap:balance">Free reacts to the match. Plus reacts to <span style="color:#FFC24A">you</span>.</h2>
         <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:52ch; margin:0 0 28px; text-wrap:pretty">Your team, your player, the matchup that ruined your last three splits. Muse keeps it, and every match starts closer to where you left off.</p>
         <div style="display:flex; flex-direction:column; gap:12px; max-width:520px">
           <div style="display:flex; gap:14px; align-items:flex-start; border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:14px 16px; background:rgba(255,255,255,0.025)">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#8A8DA0; padding-top:3px; flex:none">FREE</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.12em; color:#8A8DA0; padding-top:3px; flex:none">FREE</span>
             <span style="font-size:15.5px; line-height:1.5; color:#D5D7E2">Live reactions, plain-language calls, PCI+ at a glance. Enough to follow any game again.</span>
           </div>
           <div style="display:flex; gap:14px; align-items:flex-start; border:1px solid rgba(255,194,74,0.32); border-radius:14px; padding:14px 16px; background:linear-gradient(90deg, rgba(255,194,74,0.09), rgba(255,255,255,0.02))">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#FFC24A; padding-top:3px; flex:none">PLUS</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.12em; color:#FFC24A; padding-top:3px; flex:none">PLUS</span>
             <span style="font-size:15.5px; line-height:1.5; color:#E8E9F0">Remembers your team, tunes her depth to you, and keeps the thread between matches.</span>
           </div>
         </div>
@@ -302,20 +309,20 @@
   </section>
 
   <section id="formfactor" data-screen-label="Form factor" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto; border-top:1px solid rgba(255,255,255,0.06)">
-    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">THE FORM FACTOR</span>
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:20ch; text-wrap:balance">A second layer on the screen you already watch.</h2>
+    <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">THE FORM FACTOR</span>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:20ch; text-wrap:balance">A second layer on the screen you already watch.</h2>
     <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:56ch; margin:0 0 44px; text-wrap:pretty">One click from the Chrome Web Store. Works beside YouTube, CHZZK and Twitch — no overlay, no second monitor, no alt-tab.</p>
 
     <div style="border:1px solid rgba(255,255,255,0.09); border-radius:18px; overflow:hidden; background:#08080D">
       <div style="display:flex; align-items:center; gap:8px; padding:11px 16px; background:rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.07)">
         <span style="width:9px; height:9px; border-radius:50%; background:#FF5F57"></span><span style="width:9px; height:9px; border-radius:50%; background:#FFBD2E"></span><span style="width:9px; height:9px; border-radius:50%; background:#28C840"></span>
-        <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#6E7288; margin-left:10px">LCK 2026 Summer · T1 vs GEN · Game 3</span>
+        <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#6E7288; margin-left:10px">LCK 2026 Summer · T1 vs GEN · Game 3</span>
       </div>
       <div style="display:flex; flex-wrap:wrap">
         <div style="flex:2 1 460px; min-width:280px; position:relative; aspect-ratio:16/9; overflow:hidden; container-type:size; background:linear-gradient(160deg,#101623,#080810 60%); border-right:1px solid rgba(255,255,255,0.07)">
           <div style="position:absolute; inset:0; background:repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 52px), repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 52px)"></div>
           <div style="position:absolute; inset:0; background:radial-gradient(440px 280px at 58% 60%, rgba(255,194,74,0.15), transparent 70%), radial-gradient(320px 220px at 30% 42%, rgba(53,240,220,0.09), transparent 70%)"></div>
-          <div style="position:absolute; top:12px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:12px; background:rgba(8,8,13,0.82); border:1px solid rgba(255,255,255,0.1); border-radius:9px; padding:7px 14px; font-family:'JetBrains Mono',monospace">
+          <div style="position:absolute; top:12px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:12px; background:rgba(8,8,13,0.82); border:1px solid rgba(255,255,255,0.1); border-radius:9px; padding:7px 14px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace">
             <span style="color:#E8E9F0; font-weight:700; font-size:13px">T1</span>
             <span style="color:#FFC24A; font-weight:700; font-size:16px">14</span>
             <span style="color:#6E7288; font-size:11px">24:10</span>
@@ -341,23 +348,23 @@
             <div style="position:absolute; left:48%; top:62%; width:5px; height:5px; border-radius:50%; background:#35F0DC"></div>
             <div style="position:absolute; left:66%; top:44%; width:5px; height:5px; border-radius:50%; background:#FF7A7A"></div>
           </div>
-          <div style="position:absolute; bottom:14px; left:14px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:#35F0DC; display:flex; align-items:center; gap:7px">
+          <div style="position:absolute; bottom:14px; left:14px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.14em; color:#35F0DC; display:flex; align-items:center; gap:7px">
             <span style="width:7px; height:7px; border-radius:50%; background:#35F0DC; animation:livePulse 1.4s infinite"></span>BARON · 00:38
           </div>
         </div>
         <div style="flex:1 1 300px; min-width:260px; padding:16px; display:flex; flex-direction:column; gap:12px; background:linear-gradient(180deg, rgba(123,43,255,0.07), rgba(10,10,15,0))">
           <div style="display:flex; align-items:center; gap:10px">
             <img src="assets/muse-head2.png" alt="Muse" style="width:36px; height:36px; border-radius:50%; object-fit:cover; object-position:50% 18%; border:1px solid rgba(53,240,220,0.4)" />
-            <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:0.06em; font-size:14px">MUSE</span>
-            <span style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#35F0DC">LIVE</span>
+            <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; letter-spacing:0.06em; font-size:14px">MUSE</span>
+            <span style="margin-left:auto; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; color:#35F0DC">LIVE</span>
           </div>
           <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px 12px 12px 4px; padding:11px 13px; font-size:14.5px; line-height:1.45; color:#D5D7E2">Baron in 40 seconds and GEN has no flash bot. This is the play.</div>
           <div style="border:1px solid rgba(255,194,74,0.3); border-radius:12px; padding:12px 13px; background:rgba(255,194,74,0.07)">
-            <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:#8A8DA0"><span>PCI+</span><span>T1</span></div>
-            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:24px; color:#FFC24A; margin-top:3px">63.4</div>
+            <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.12em; color:#8A8DA0"><span>PCI+</span><span>T1</span></div>
+            <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-weight:700; font-size:24px; color:#FFC24A; margin-top:3px">63.4</div>
             <div style="height:6px; border-radius:99px; background:rgba(255,255,255,0.08); margin-top:9px; overflow:hidden"><div style="height:100%; width:63%; background:#FFC24A; box-shadow:0 0 14px rgba(255,194,74,0.5)"></div></div>
           </div>
-          <div style="margin-top:auto; display:flex; align-items:center; gap:9px; border:1px solid rgba(255,255,255,0.1); border-radius:11px; padding:10px 12px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#5C6076">
+          <div style="margin-top:auto; display:flex; align-items:center; gap:9px; border:1px solid rgba(255,255,255,0.1); border-radius:11px; padding:10px 12px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; color:#5C6076">
             <span style="color:#35F0DC">&gt;</span>ask about this fight…
           </div>
         </div>
@@ -367,9 +374,9 @@
     <div style="display:flex; gap:clamp(14px,2vw,24px); flex-wrap:wrap; margin-top:28px">
       <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
         <div style="flex:1 1 240px; min-width:220px; border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:18px 20px; background:rgba(255,255,255,0.025); display:flex; gap:14px; align-items:flex-start">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#35F0DC; border:1px solid rgba(53,240,220,0.35); border-radius:7px; padding:4px 8px; flex:none">{{ step.n }}</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; color:#35F0DC; border:1px solid rgba(53,240,220,0.35); border-radius:7px; padding:4px 8px; flex:none">{{ step.n }}</span>
           <div>
-            <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:17px; margin-bottom:5px">{{ step.t }}</div>
+            <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:17px; margin-bottom:5px">{{ step.t }}</div>
             <div style="font-size:14.5px; line-height:1.45; color:#8A8DA0">{{ step.d }}</div>
           </div>
         </div>
@@ -380,12 +387,12 @@
   <section id="install-section" data-screen-label="Final CTA" data-reveal="1" style="position:relative; padding:clamp(70px,9vw,120px) clamp(16px,4vw,56px) clamp(50px,6vw,80px); max-width:1280px; margin:0 auto">
     <div style="border:1px solid rgba(53,240,220,0.22); border-radius:26px; background:radial-gradient(900px 400px at 70% 110%, rgba(123,43,255,0.22), transparent 70%), linear-gradient(180deg, rgba(53,240,220,0.06), rgba(255,255,255,0.015)); padding:clamp(28px,4vw,60px); display:flex; gap:clamp(24px,4vw,56px); align-items:center; flex-wrap:wrap; overflow:hidden">
       <div style="flex:1 1 380px; min-width:0">
-        <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(32px,4.6vw,64px); line-height:1.02; letter-spacing:-0.02em; margin:0 0 18px; text-wrap:balance">From the next match on, let's watch together.</h2>
+        <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(32px,4.6vw,64px); line-height:1.02; letter-spacing:-0.02em; margin:0 0 18px; text-wrap:balance">From the next match on, let's watch together.</h2>
         <p style="font-size:clamp(15px,1.4vw,19px); line-height:1.55; color:#9DA1B4; max-width:44ch; margin:0 0 30px; text-wrap:pretty">Free to install. Muse is waiting in the side panel.</p>
-        <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:12px; padding:17px 30px; border-radius:14px; background:#35F0DC; color:#04141A; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(16px,1.6vw,20px); letter-spacing:0.01em; box-shadow:0 0 46px rgba(53,240,220,0.3)" style-hover="background:#8CFFF1">
+        <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:12px; padding:17px 30px; border-radius:14px; background:#35F0DC; color:#04141A; font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(16px,1.6vw,20px); letter-spacing:0.01em; box-shadow:0 0 46px rgba(53,240,220,0.3)" style-hover="background:#8CFFF1">
           <span style="width:10px; height:10px; border-radius:50%; background:#04141A; display:inline-block"></span>Add RORR to Chrome
         </a>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#6E7288; margin-top:14px">Desktop Chrome required · On mobile, open this page on desktop to install</div>
+        <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#6E7288; margin-top:14px">Desktop Chrome required · On mobile, open this page on desktop to install</div>
       </div>
       <div style="flex:0 1 300px; display:flex; justify-content:center; position:relative; min-width:230px">
         <div style="position:absolute; bottom:0; width:min(330px,90%); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle, rgba(53,240,220,0.22), transparent 65%)"></div>
@@ -398,7 +405,7 @@
     <div style="max-width:1280px; margin:0 auto; display:flex; gap:clamp(24px,4vw,60px); flex-wrap:wrap; align-items:flex-start">
       <div style="flex:1 1 260px">
         <img src="assets/rorr-logo.png" alt="RORR" style="height:30px; width:auto; display:block; opacity:0.9" />
-        <p style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.1em; color:#6E7288; margin:14px 0 0; max-width:34ch; line-height:1.6">REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR</p>
+        <p style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.1em; color:#6E7288; margin:14px 0 0; max-width:34ch; line-height:1.6">REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR</p>
       </div>
       <div style="flex:1 1 200px; display:flex; flex-direction:column; gap:10px">
         <a href="https://rorr.club/terms" target="_blank" rel="noopener" style="font-size:14.5px; color:#9DA1B4" style-hover="color:#E8E9F0">Terms of Service</a>
@@ -421,7 +428,7 @@
 
   <sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
     <div style="position:fixed; left:0; right:0; bottom:0; z-index:60; display:flex; align-items:center; justify-content:center; gap:clamp(12px,2vw,26px); flex-wrap:wrap; padding:12px clamp(14px,3vw,32px); background:rgba(10,10,15,0.86); backdrop-filter:blur(16px); border-top:1px solid rgba(53,240,220,0.22)">
-      <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:clamp(14px,1.4vw,17px); color:#E8E9F0">Next match starts without you. Or with Muse.</span>
+      <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:clamp(14px,1.4vw,17px); color:#E8E9F0">Next match starts without you. Or with Muse.</span>
       <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:9px; padding:11px 22px; border-radius:11px; background:#35F0DC; color:#04141A; font-weight:700; font-size:14.5px; white-space:nowrap" style-hover="background:#8CFFF1">Add to Chrome</a>
     </div>
   </sc-if>
@@ -429,6 +436,107 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
 const GOLD = '#FFC24A', CYAN = '#35F0DC', DIM = 'rgba(255,255,255,0.16)';
+
+const KO = {
+  'Matches': '경기', 'About': '회사 소개', 'Add to Chrome': 'Chrome에 추가',
+  'Live match intelligence · Chrome side panel': '실시간 경기 인텔리전스 · Chrome 사이드 패널',
+  'The AI that knows': '지금 ', 'this': '이 순간', 'game, right now.': '을 아는 AI.',
+  "GPT knows yesterday's League. RORR knows this teamfight — every objective, every gold swing, every rotation, as it happens.": 'GPT는 어제의 리그를 압니다. RORR은 지금 이 한타를 압니다 — 오브젝트, 골드 격차, 로테이션까지 벌어지는 그 순간에.',
+  'Ask Muse anything about the game on your screen…': '지금 보고 있는 경기, 뮤즈에게 뭐든 물어보세요…',
+  'ASK': '질문', 'NEW': '입문', 'FAN': '팬', 'DEEP': '심화', 'PRO': '프로',
+  'CONTROL': '주도권', 'WIN PRESSURE': '승리 압력', 'FIGHT ENTRY': '교전 진입', 'DELAY': '지연',
+  'POST-FIGHT': '교전 후', 'GOLD DIFF': '골드 차이', 'RAW': '실측', 'WEIGHTED': '가중', 'DRAFT EDGE': '드래프트 우위',
+
+  'STEP 01 — THE GAP': 'STEP 01 — 멀어진 거리',
+  'You stopped keeping up. Not because you stopped caring.': '따라가지 못하게 된 건, 관심이 식어서가 아닙니다.',
+  "New patch, new meta, rosters you don't recognize, a jungle route that apparently decided the game. The match is still on — you're just watching from further away every split.": '새 패치, 새 메타, 모르는 로스터, 경기를 갈랐다는 정글 루트. 경기는 계속되는데 매 시즌 조금씩 더 멀리서 보고 있을 뿐입니다.',
+  'Catch up with League again — free, from your next match.': '다시 리그를 따라잡으세요 — 다음 경기부터, 무료로.',
+  '"who is that mid laner?"': '"저 미드 누구야?"',
+  '"why is everyone screaming?"': '"왜 다들 소리치는 거야?"',
+  '"is this comeback real?"': '"이거 진짜 역전이야?"',
+  "I'll take it from here. Just watch — I'll tell you what matters.": '여기서부터는 제가 볼게요. 중요한 순간만 짚어줄게요.',
+
+  'STEP 02 — WATCH TOGETHER': 'STEP 02 — 함께 보기',
+  'A game you watched alone becomes a game you watch together.': '혼자 보던 경기가, 같이 보는 경기가 됩니다.',
+  'Muse reads the live feed the same second you do. Kill, steal, ace — she reacts before the caster finishes the sentence.': '뮤즈는 당신과 같은 순간에 실시간 데이터를 읽습니다. 킬, 스틸, 에이스 — 캐스터가 말을 끝내기 전에 반응합니다.',
+  'BARON CONTEST · 00:38': '바론 교전 · 00:38', 'SIDE PANEL · MUSE': '사이드 패널 · MUSE',
+  'SHOCK': '경악', 'READ': '판단', 'CALL': '콜',
+
+  'STEP 03 — YOUR DEPTH': 'STEP 03 — 깊이는 당신 몫',
+  'Same teamfight. The depth is yours to choose.': '같은 한타, 깊이는 당신이 고릅니다.',
+  'Newcomers get the turning point. Veterans get the draft, the cooldowns, the wGE+ swing. One engine, two registers.': '입문자에게는 승부처를, 고수에게는 드래프트와 쿨다운, wGE+ 변화를. 하나의 엔진, 두 개의 언어.',
+  'NEWCOMER MODE': '입문자 모드', 'VETERAN MODE': '고수 모드', '24:10 · DRAKE': '24:10 · 드래곤',
+  '"This dragon fight is where today\u0027s game gets decided. If T1 takes it, they get a buff that makes the next fight much easier — that\u0027s why everyone is walking down there."': '"이 드래곤 싸움에서 오늘 경기가 결정됩니다. T1이 먹으면 다음 한타가 훨씬 쉬워지는 버프를 얻어요 — 그래서 다들 아래로 내려가는 겁니다."',
+  'WHY IT MATTERS': '왜 중요한가', 'NO JARGON': '용어 없이',
+  "Draft asymmetry pays out here: GEN's frontload needs the 3-item spike, T1 is 40s ahead on it. Flash down bot side, ult timers staggered 14s. wGE+ delta +1.9k despite a flat gold graph — the fight is already leaning.": '드래프트 비대칭이 여기서 회수됩니다: GEN의 프론트라인은 3코어 스파이크가 필요하고, T1이 그보다 40초 앞섭니다. 봇 점멸 소진, 궁 타이머 14초 엇갈림. 골드 그래프는 평평한데 wGE+는 +1.9k — 교전은 이미 기울어 있습니다.',
+  'CD MAP': '쿨다운 맵', 'DRAFT LENS': '드래프트 렌즈',
+
+  'STEP 04 — NUMBERS WITH A STORY': 'STEP 04 — 이야기가 있는 숫자',
+  "The scoreboard shows what happened. Ours shows what's happening.": '스코어보드는 벌어진 일을 보여줍니다. 우리는 벌어지고 있는 일을 보여줍니다.',
+  'MATCH CONTROL INDEX': '경기 주도권 지수',
+  "Who is holding this game — in one number. Momentum the scoreboard can't print.": '이 경기를 누가 쥐고 있는지, 숫자 하나로. 스코어보드가 찍어내지 못하는 흐름입니다.',
+  "Behind on kills, PCI+ still climbing? That's the smell of a comeback.": '킬은 뒤지는데 PCI+가 계속 오른다면, 역전의 냄새입니다.',
+  'WEIGHTED GOLD EARNED': '가중 획득 골드',
+  'Not all gold is worth the same. wGE+ weighs where it landed, when, and on whom.': '모든 골드의 가치는 같지 않습니다. wGE+는 언제, 어디에, 누구에게 갔는지를 가중합니다.',
+  'Gold diff reads 0, wGE+ reads +1.9k. The game already tilted.': '골드 차이는 0, wGE+는 +1.9k. 경기는 이미 기울었습니다.',
+
+  'STEP 05 — SHE REMEMBERS YOU': 'STEP 05 — 당신을 기억합니다',
+  'Free reacts to the match. Plus reacts to': 'Free는 경기에 반응합니다. Plus가 반응하는 건 ', 'you': '당신',
+  'Your team, your player, the matchup that ruined your last three splits. Muse keeps it, and every match starts closer to where you left off.': '응원하는 팀, 좋아하는 선수, 세 시즌 내내 당신을 괴롭힌 매치업. 뮤즈가 기억하고, 매 경기가 지난번 그 지점에서 이어집니다.',
+  'Live reactions, plain-language calls, PCI+ at a glance. Enough to follow any game again.': '실시간 반응, 쉬운 말로 된 콜, 한눈에 보는 PCI+. 어떤 경기든 다시 따라가기에 충분합니다.',
+  'Remembers your team, tunes her depth to you, and keeps the thread between matches.': '당신의 팀을 기억하고, 설명의 깊이를 맞추고, 경기 사이의 맥락을 이어갑니다.',
+
+  'THE FORM FACTOR': '제품 형태',
+  'A second layer on the screen you already watch.': '이미 보고 있는 화면 위의 두 번째 레이어.',
+  'One click from the Chrome Web Store. Works beside YouTube, CHZZK and Twitch — no overlay, no second monitor, no alt-tab.': 'Chrome 웹스토어에서 클릭 한 번. YouTube, 치지직, 트위치 옆에서 작동합니다 — 오버레이도, 두 번째 모니터도, alt-tab도 없습니다.',
+  'LCK 2026 Summer · T1 vs GEN · Game 3': 'LCK 2026 서머 · T1 vs GEN · 3세트',
+  'BARON · 00:38': '바론 · 00:38',
+  'Baron in 40 seconds and GEN has no flash bot. This is the play.': '40초 뒤 바론, GEN은 봇 점멸이 없습니다. 지금이 타이밍이에요.',
+  'ask about this fight…': '이 교전에 대해 물어보세요…',
+  'Install': '설치', 'One click from the Chrome Web Store. No account needed to start.': 'Chrome 웹스토어에서 클릭 한 번. 시작에 계정은 필요 없습니다.',
+  'Open a stream': '중계 켜기', 'YouTube, CHZZK or Twitch — any live LCK broadcast.': 'YouTube, 치지직, 트위치 — LCK 생중계라면 어디든.',
+  'Muse appears': '뮤즈 등장', 'The side panel opens next to the video and syncs to the match clock.': '영상 옆에 사이드 패널이 열리고 경기 시계에 맞춰 동기화됩니다.',
+
+  "From the next match on, let's watch together.": '다음 경기부터, 같이 봅시다.',
+  'Free to install. Muse is waiting in the side panel.': '설치는 무료. 뮤즈가 사이드 패널에서 기다립니다.',
+  'Add RORR to Chrome': 'Chrome에 RORR 추가',
+  'Desktop Chrome required · On mobile, open this page on desktop to install': '데스크톱 Chrome 필요 · 모바일에서는 데스크톱에서 이 페이지를 열어 설치하세요',
+  'Next match starts without you. Or with Muse.': '다음 경기는 당신 없이 시작됩니다. 아니면 뮤즈와 함께.',
+
+  'REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR': '실시간 라이브 이벤트 온톨로지 엔진 · 첫 번째 애플리케이션: RORR',
+  'Terms of Service': '이용약관', 'Privacy Policy': '개인정보처리방침',
+  'Partnership Inquiries': '파트너십 문의', 'Chrome Web Store': 'Chrome 웹스토어',
+  "RORR isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties.": 'RORR은 Riot Games의 승인을 받지 않았으며, Riot Games 또는 Riot Games 자산의 제작·운영에 공식적으로 관여한 누구의 견해도 대변하지 않습니다.',
+  'League of Legends, LCK and all related logos and names are trademarks or registered trademarks of Riot Games, Inc. and their respective owners. Team, player and league marks shown here belong to their respective rights holders.': '리그 오브 레전드, LCK 및 관련 로고와 명칭은 Riot Games, Inc. 및 각 권리자의 상표 또는 등록상표입니다. 여기 표시된 팀·선수·리그 표장은 각 권리자에게 귀속됩니다.',
+  'Match data is provided under an official Live Stats agreement. PCI+, wGE+ and other derived metrics are calculated by us and are not official records.': '경기 데이터는 공식 Live Stats 계약에 따라 제공됩니다. PCI+, wGE+ 등 파생 지표는 당사가 산출한 값이며 공식 기록이 아닙니다.',
+  'Pitch Interactive Inc. · Business reg. 444-87-03154 · Representative: MANSOO CHO · +82-507-1355-8549': '주식회사 피치인터랙티브 · 사업자등록번호 444-87-03154 · 대표 조만수 · 0507-1355-8549',
+  '4F, Office Building, Pangyo Global Biz Center, 43, Changup-ro, Sujeong-gu, Seongnam-si, Gyeonggi-do, 13449, Republic of Korea': '경기도 성남시 수정구 창업로 43 판교글로벌비즈센터 오피스동 4층 (13449)'
+};
+
+const QA_KO = [
+  {
+    q: '롤을 잘 몰라요 — 지금 뭐가 중요한가요?',
+    a: '40초 뒤 바론 시도에 모든 게 걸려 있습니다. GEN이 봇에서 점멸 두 개를 썼기 때문에 T1은 안전하게 시작할 수 있어요. 성공하면 경기를 끝내는 버프를 들고 다음 한타에 들어갑니다.'
+  },
+  {
+    q: '방금 한타는 왜 진 건가요?',
+    a: '한타가 아니라 세팅에서 졌습니다. GEN이 12초 먼저 시야를 잡고, 당신 정글이 강을 건너는 중에 교전을 열었어요. 첫 3초가 4대5 — 그게 한타 전부입니다.'
+  },
+  {
+    q: 'T1의 골드 리드가 실제로 의미가 있나요?',
+    a: '1.2k라는 숫자가 아니라 그 골드가 어디 있는지가 핵심입니다. 이번 아이템 스파이크를 받는 캐리 두 명에 몰려 있어서 wGE+는 T1에 +1.9k를 매깁니다. 골드 그래프는 평평한데 경기는 기울었습니다.'
+  },
+  {
+    q: '드래프트는 누가 이겼나요?',
+    a: '장부상으론 GEN, 타이밍으론 T1입니다. GEN의 조합은 30분 이후 더 강해지지만, T1은 22~27분에 파워 스파이크 세 개를 겹쳤습니다. 이 바론 구간이 정확히 그 드래프트가 노린 창입니다.'
+  }
+];
+
+const REACTS_KO = [
+  '말도 안 돼 — 체력 200 남기고 드래곤 뒤집었어요?!',
+  '잠깐. 상대 정글이 40초 동안 안 보였어요…',
+  '40초 뒤 바론이에요. 같이 봐요 — 여기가 승부처예요.'
+];
 
 const QA = [
   {
@@ -478,8 +586,51 @@ const REACTS = [
 class Component extends DCLogic {
   state = {
     typed: '', answer: '', cards: [], streaming: false, showCaret: false,
-    reactIdx: 0, qi: 0, showBar: false, pciT1: 38, pciGen: 62, wgeSeed: 0
+    reactIdx: 0, qi: 0, showBar: false, pciT1: 38, pciGen: 62, wgeSeed: 0,
+    lang: 'en'
   };
+
+  get ko() { return this.state.lang === 'ko'; }
+
+  qa(i) {
+    const en = QA[i];
+    return { q: this.ko ? QA_KO[i].q : en.q, a: this.ko ? QA_KO[i].a : en.a, cards: en.cards };
+  }
+
+  setLang(l) {
+    if (l === this.state.lang) return;
+    try { localStorage.setItem('rorr-lang', l); } catch (e) {}
+    this.setState({ lang: l }, () => {
+      this.applyLang();
+      const i = this.state.qi;
+      if (this._reactImg) this._reactImg.src = REACTS[this.state.reactIdx].src;
+      this.run(this.qa(i));
+    });
+  }
+
+  applyLang() {
+    const ko = this.ko;
+    document.documentElement.lang = ko ? 'ko' : 'en';
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => {
+        const p = n.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        const tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEXTAREA') return NodeFilter.FILTER_REJECT;
+        return n.nodeValue && n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((n) => {
+      if (ko) {
+        const v = KO[n.nodeValue.trim()];
+        if (v && n.nodeValue !== v) { if (n.__en == null) n.__en = n.nodeValue; n.nodeValue = v; }
+      } else if (n.__en != null) {
+        n.nodeValue = n.__en; n.__en = null;
+      }
+    });
+  }
 
   renderVals() {
     const s = this.state;
@@ -493,10 +644,16 @@ class Component extends DCLogic {
       streaming: s.streaming,
       cards: s.cards,
       onSend: () => this.ask((s.qi + 1) % QA.length),
+      setEn: () => this.setLang('en'),
+      setKo: () => this.setLang('ko'),
+      enBg: s.lang === 'en' ? '#35F0DC' : 'transparent',
+      enFg: s.lang === 'en' ? '#04141A' : '#9DA1B4',
+      koBg: s.lang === 'ko' ? '#35F0DC' : 'transparent',
+      koFg: s.lang === 'ko' ? '#04141A' : '#9DA1B4',
       chips: QA.map((item, i) => {
         const on = i === s.qi;
         return {
-          tier: item.tier, q: item.q, pick: () => this.ask(i),
+          tier: item.tier, q: s.lang === 'ko' ? QA_KO[i].q : item.q, pick: () => this.ask(i),
           bd: on ? 'rgba(53,240,220,0.75)' : 'rgba(255,255,255,0.1)',
           bg: on ? 'rgba(53,240,220,0.12)' : 'rgba(255,255,255,0.04)',
           fg: on ? '#E8E9F0' : '#B9BCCB',
@@ -505,7 +662,7 @@ class Component extends DCLogic {
         };
       }),
       reactRef: (el) => { this._reactImg = el; },
-      reactLine: REACTS[s.reactIdx].line,
+      reactLine: s.lang === 'ko' ? REACTS_KO[s.reactIdx] : REACTS[s.reactIdx].line,
       reactTag: REACTS[s.reactIdx].tag,
       pciT1: s.pciT1, pciGen: s.pciGen,
       pciT1Label: s.pciT1.toFixed(1),
@@ -541,7 +698,7 @@ class Component extends DCLogic {
 
   ask(i) {
     this.setState({ qi: i });
-    this.run(QA[i]);
+    this.run(this.qa(i));
   }
 
   run(item) {
@@ -576,8 +733,17 @@ class Component extends DCLogic {
     this._t = [];
   }
 
+  componentDidUpdate() {
+    if (this._laf) return;
+    this._laf = requestAnimationFrame(() => { this._laf = null; this.applyLang(); });
+  }
+
   componentDidMount() {
     this._t = [];
+    let saved = 'en';
+    try { saved = localStorage.getItem('rorr-lang') === 'ko' ? 'ko' : 'en'; } catch (e) {}
+    if (saved === 'ko') this.setState({ lang: 'ko' });
+    this.applyLang();
     this._t.push(setTimeout(() => this.ask(0), 900));
 
     this._react = setInterval(() => {
@@ -624,6 +790,7 @@ class Component extends DCLogic {
     window.removeEventListener('scroll', this._onScroll);
     if (this._io) this._io.disconnect();
     cancelAnimationFrame(this._raf);
+    if (this._laf) cancelAnimationFrame(this._laf);
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('pointermove', this._onMove);
   }

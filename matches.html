@@ -10,10 +10,13 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Gothic+A1:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 <style>
   html, body { margin:0; padding:0; background:#0A0A0F; }
-  body { font-family:'Barlow', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  body { font-family:'Barlow','Pretendard Variable','Pretendard',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  html[lang="ko"] body { word-break:keep-all; }
+  html[lang="ko"] h1, html[lang="ko"] h2 { letter-spacing:-0.03em; line-height:1.16; }
   * { box-sizing:border-box; }
   a { color:#35F0DC; text-decoration:none; }
   a:hover { color:#8CFFF1; }
@@ -33,6 +36,10 @@
     <div style="display:flex; align-items:center; gap:clamp(14px,2.2vw,30px); flex-wrap:wrap">
       <a href="matches.html" style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; color:#E8E9F0" style-hover="color:#35F0DC">Matches</a>
       <a href="about.html" style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; color:#9DA1B4" style-hover="color:#E8E9F0">About</a>
+      <div style="display:flex; align-items:center; gap:2px; padding:3px; border:1px solid rgba(255,255,255,0.16); border-radius:999px">
+        <button onClick="{{ setEn }}" style="cursor:pointer; border:none; border-radius:999px; padding:6px 11px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; font-weight:700; letter-spacing:0.1em; transition:background .25s ease, color .25s ease; background: {{ enBg }}; color: {{ enFg }}">EN</button>
+        <button onClick="{{ setKo }}" style="cursor:pointer; border:none; border-radius:999px; padding:6px 11px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; font-weight:700; letter-spacing:0.1em; transition:background .25s ease, color .25s ease; background: {{ koBg }}; color: {{ koFg }}">KO</button>
+      </div>
       <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:9px; padding:10px 18px; border-radius:999px; background:#35F0DC; color:#04141A; font-weight:700; font-size:14px; box-shadow:0 0 24px rgba(53,240,220,0.25)" style-hover="background:#8CFFF1; color:#04141A">
         <span style="width:8px; height:8px; border-radius:50%; background:#04141A; display:inline-block"></span>Add to Chrome
       </a>
@@ -40,32 +47,32 @@
   </nav>
 
   <div style="max-width:1220px; margin:0 auto; padding:clamp(24px,4vw,44px) clamp(16px,4vw,56px) 0">
-    <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.16em; color:#5C6076">/matches/lck/2026-08-12-t1-vs-gen</div>
+    <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.16em; color:#5C6076">/matches/lck/2026-08-12-t1-vs-gen</div>
   </div>
 
   <header data-screen-label="Match header" style="max-width:1220px; margin:0 auto; padding:clamp(18px,2.4vw,28px) clamp(16px,4vw,56px) clamp(30px,4vw,48px)">
     <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:26px">
-      <span style="font-family:'Chakra Petch',sans-serif; font-weight:700; letter-spacing:0.1em; font-size:14px; border:1px solid rgba(255,255,255,0.16); border-radius:7px; padding:6px 12px">LCK</span>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#8A8DA0">2026 SUMMER · WEEK 6 · GAME 3</span>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#8A8DA0">2026-08-12</span>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#FFC24A; border:1px solid rgba(255,194,74,0.35); border-radius:6px; padding:4px 9px">FINAL</span>
+      <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; letter-spacing:0.1em; font-size:14px; border:1px solid rgba(255,255,255,0.16); border-radius:7px; padding:6px 12px">LCK</span>
+      <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12.5px; color:#8A8DA0">2026 SUMMER · WEEK 6 · GAME 3</span>
+      <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12.5px; color:#8A8DA0">2026-08-12</span>
+      <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.14em; color:#FFC24A; border:1px solid rgba(255,194,74,0.35); border-radius:6px; padding:4px 9px">FINAL</span>
     </div>
     <div style="display:flex; align-items:center; justify-content:center; gap:clamp(18px,4vw,60px); flex-wrap:wrap; text-align:center">
       <div style="flex:1 1 220px; display:flex; flex-direction:column; align-items:center; gap:12px">
-        <div style="width:clamp(64px,7vw,90px); aspect-ratio:1; border-radius:18px; background:linear-gradient(140deg,#2A2F45,#12141F); border:1px solid rgba(255,194,74,0.35); display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(20px,2.4vw,30px); color:#FFC24A">T1</div>
-        <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:clamp(16px,1.7vw,21px)">T1</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#8A8DA0">WINNER</div>
+        <div style="width:clamp(64px,7vw,90px); aspect-ratio:1; border-radius:18px; background:linear-gradient(140deg,#2A2F45,#12141F); border:1px solid rgba(255,194,74,0.35); display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(20px,2.4vw,30px); color:#FFC24A">T1</div>
+        <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:clamp(16px,1.7vw,21px)">T1</div>
+        <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#8A8DA0">WINNER</div>
       </div>
       <div style="flex:0 1 240px; display:flex; flex-direction:column; align-items:center; gap:6px">
-        <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:clamp(40px,6vw,72px); line-height:1; letter-spacing:-0.02em; display:flex; align-items:center; gap:clamp(10px,2vw,22px)">
+        <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-weight:700; font-size:clamp(40px,6vw,72px); line-height:1; letter-spacing:-0.02em; display:flex; align-items:center; gap:clamp(10px,2vw,22px)">
           <span style="color:#FFC24A">21</span><span style="color:#3A3F55; font-size:0.55em">/</span><span style="color:#9DA1B4">14</span>
         </div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.16em; color:#6E7288">KILLS · 34:52</div>
+        <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.16em; color:#6E7288">KILLS · 34:52</div>
       </div>
       <div style="flex:1 1 220px; display:flex; flex-direction:column; align-items:center; gap:12px">
-        <div style="width:clamp(64px,7vw,90px); aspect-ratio:1; border-radius:18px; background:linear-gradient(140deg,#1D2436,#0F1119); border:1px solid rgba(255,255,255,0.14); display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(20px,2.4vw,30px); color:#9DA1B4">GEN</div>
-        <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:clamp(16px,1.7vw,21px)">Gen.G</div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#5C6076">SERIES 1-2</div>
+        <div style="width:clamp(64px,7vw,90px); aspect-ratio:1; border-radius:18px; background:linear-gradient(140deg,#1D2436,#0F1119); border:1px solid rgba(255,255,255,0.14); display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(20px,2.4vw,30px); color:#9DA1B4">GEN</div>
+        <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:clamp(16px,1.7vw,21px)">Gen.G</div>
+        <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#5C6076">SERIES 1-2</div>
       </div>
     </div>
   </header>
@@ -75,23 +82,23 @@
       <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:26px">
         <div>
           <div style="display:flex; align-items:baseline; gap:12px">
-            <span style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(26px,3vw,38px); color:#FFC24A">PCI+</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.14em; color:#8A8DA0">MATCH CONTROL INDEX</span>
+            <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(26px,3vw,38px); color:#FFC24A">PCI+</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.14em; color:#8A8DA0">MATCH CONTROL INDEX</span>
           </div>
           <p style="margin:10px 0 0; font-size:clamp(14.5px,1.3vw,17px); color:#9DA1B4; max-width:52ch; text-wrap:pretty">Who held the game, minute by minute. Above the line is T1 control, below is Gen.G.</p>
         </div>
         <div style="display:flex; gap:clamp(16px,3vw,34px)">
           <div style="text-align:right">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:#8A8DA0">T1 AVG</div>
-            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:clamp(24px,2.6vw,34px); color:#FFC24A">61.8</div>
+            <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.14em; color:#8A8DA0">T1 AVG</div>
+            <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-weight:700; font-size:clamp(24px,2.6vw,34px); color:#FFC24A">61.8</div>
           </div>
           <div style="text-align:right">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:#8A8DA0">GEN AVG</div>
-            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:clamp(24px,2.6vw,34px); color:#9DA1B4">38.2</div>
+            <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.14em; color:#8A8DA0">GEN AVG</div>
+            <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-weight:700; font-size:clamp(24px,2.6vw,34px); color:#9DA1B4">38.2</div>
           </div>
           <div style="text-align:right">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:#8A8DA0">PEAK SWING</div>
-            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:clamp(24px,2.6vw,34px); color:#35F0DC">+27.4</div>
+            <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.14em; color:#8A8DA0">PEAK SWING</div>
+            <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-weight:700; font-size:clamp(24px,2.6vw,34px); color:#35F0DC">+27.4</div>
           </div>
         </div>
       </div>
@@ -105,7 +112,7 @@
           </div>
         </sc-for>
       </div>
-      <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11px; color:#5C6076; margin-top:10px">
+      <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; color:#5C6076; margin-top:10px">
         <span>00:00</span><span>10:00</span><span>20:00</span><span>30:00</span><span>34:52</span>
       </div>
     </div>
@@ -113,8 +120,8 @@
 
   <section data-screen-label="wGE+ timeline" style="max-width:1220px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(40px,5vw,70px)">
     <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:8px">
-      <span style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(22px,2.6vw,32px); color:#35F0DC">wGE+</span>
-      <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.14em; color:#8A8DA0">WEIGHTED GOLD EARNED · T1 PERSPECTIVE</span>
+      <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(22px,2.6vw,32px); color:#35F0DC">wGE+</span>
+      <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.14em; color:#8A8DA0">WEIGHTED GOLD EARNED · T1 PERSPECTIVE</span>
     </div>
     <p style="font-size:clamp(14.5px,1.3vw,17px); color:#9DA1B4; margin:0 0 26px; max-width:60ch; text-wrap:pretty">Hover an event node for Muse's read on the swing.</p>
 
@@ -130,33 +137,33 @@
           <div style="position:absolute; bottom: {{ tipY }}%; left: {{ tipX }}%; transform:translate(-50%, 0); margin-bottom:26px; width:min(300px,46vw); min-width:190px; background:rgba(12,12,18,0.97); border:1px solid rgba(53,240,220,0.3); border-radius:14px; padding:13px 15px; pointer-events:none; z-index:5; box-shadow:0 18px 40px rgba(0,0,0,0.55)">
             <div style="display:flex; align-items:center; gap:9px; margin-bottom:8px">
               <img src="assets/muse-head2.png" alt="Muse" style="width:26px; height:26px; border-radius:50%; object-fit:cover; object-position:50% 20%; border:1px solid rgba(53,240,220,0.4)" />
-              <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:#35F0DC">{{ tipTime }}</span>
-              <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:13px; margin-left:auto">{{ tipTitle }}</span>
+              <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.14em; color:#35F0DC">{{ tipTime }}</span>
+              <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:13px; margin-left:auto">{{ tipTitle }}</span>
             </div>
             <div style="font-size:14.5px; line-height:1.5; color:#D5D7E2">{{ tipText }}</div>
           </div>
         </sc-if>
       </div>
-      <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11px; color:#5C6076; margin-top:12px">
+      <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; color:#5C6076; margin-top:12px">
         <span>00:00</span><span>12:00</span><span>22:00</span><span>34:52</span>
       </div>
     </div>
   </section>
 
   <section data-screen-label="Moments" style="max-width:1220px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(40px,5vw,70px)">
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(24px,3vw,38px); margin:0 0 22px; letter-spacing:-0.01em">Moments that moved the number</h2>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(24px,3vw,38px); margin:0 0 22px; letter-spacing:-0.01em">Moments that moved the number</h2>
     <div style="display:flex; flex-wrap:wrap; gap:clamp(14px,2vw,20px)">
       <sc-for list="{{ moments }}" as="m" hint-placeholder-count="4">
         <div style="flex:1 1 260px; min-width:250px; border:1px solid rgba(255,255,255,0.09); border-radius:16px; background:rgba(255,255,255,0.028); padding:18px 20px; display:flex; flex-direction:column; gap:12px">
           <div style="display:flex; align-items:center; justify-content:space-between">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#35F0DC">{{ m.time }}</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#6E7288">{{ m.kind }}</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:13px; color:#35F0DC">{{ m.time }}</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.12em; color:#6E7288">{{ m.kind }}</span>
           </div>
-          <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:18px; line-height:1.25">{{ m.title }}</div>
+          <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:18px; line-height:1.25">{{ m.title }}</div>
           <div style="font-size:14.5px; line-height:1.5; color:#9DA1B4; text-wrap:pretty">{{ m.text }}</div>
           <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:auto">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#FFC24A; background:rgba(255,194,74,0.1); border-radius:7px; padding:5px 10px">PCI+ {{ m.pci }}</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#35F0DC; background:rgba(53,240,220,0.1); border-radius:7px; padding:5px 10px">wGE+ {{ m.wge }}</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; color:#FFC24A; background:rgba(255,194,74,0.1); border-radius:7px; padding:5px 10px">PCI+ {{ m.pci }}</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; color:#35F0DC; background:rgba(53,240,220,0.1); border-radius:7px; padding:5px 10px">wGE+ {{ m.wge }}</span>
           </div>
         </div>
       </sc-for>
@@ -164,9 +171,9 @@
   </section>
 
   <section data-screen-label="Player table" style="max-width:1220px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(40px,5vw,70px)">
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(24px,3vw,38px); margin:0 0 22px; letter-spacing:-0.01em">Player metrics</h2>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(24px,3vw,38px); margin:0 0 22px; letter-spacing:-0.01em">Player metrics</h2>
     <div style="border:1px solid rgba(255,255,255,0.09); border-radius:16px; overflow:hidden auto; overflow-x:auto">
-      <div style="display:grid; grid-template-columns:minmax(120px,1.6fr) repeat(4, minmax(64px,1fr)); min-width:520px; gap:0; background:rgba(255,255,255,0.05); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#8A8DA0">
+      <div style="display:grid; grid-template-columns:minmax(120px,1.6fr) repeat(4, minmax(64px,1fr)); min-width:520px; gap:0; background:rgba(255,255,255,0.05); font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.12em; color:#8A8DA0">
         <div style="padding:12px 16px">PLAYER</div>
         <div style="padding:12px 10px; text-align:right">KDA</div>
         <div style="padding:12px 10px; text-align:right">GOLD</div>
@@ -177,28 +184,28 @@
         <div style="display:grid; grid-template-columns:minmax(120px,1.6fr) repeat(4, minmax(64px,1fr)); min-width:520px; border-top:1px solid rgba(255,255,255,0.06); background: {{ p.rowBg }}" style-hover="background:rgba(255,255,255,0.05)">
           <div style="padding:12px 16px; display:flex; align-items:center; gap:10px; min-width:0">
             <span style="width:4px; height:22px; border-radius:2px; background: {{ p.team }}; flex:none"></span>
-            <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ p.name }}</span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#5C6076">{{ p.role }}</span>
+            <span style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ p.name }}</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; color:#5C6076">{{ p.role }}</span>
           </div>
-          <div style="padding:12px 10px; text-align:right; font-family:'JetBrains Mono',monospace; font-size:13.5px; color:#D5D7E2">{{ p.kda }}</div>
-          <div style="padding:12px 10px; text-align:right; font-family:'JetBrains Mono',monospace; font-size:13.5px; color:#9DA1B4">{{ p.gold }}</div>
-          <div style="padding:12px 10px; text-align:right; font-family:'JetBrains Mono',monospace; font-size:13.5px; color:#35F0DC">{{ p.wge }}</div>
-          <div style="padding:12px 16px 12px 10px; text-align:right; font-family:'JetBrains Mono',monospace; font-size:13.5px; font-weight:700; color:#FFC24A">{{ p.pci }}</div>
+          <div style="padding:12px 10px; text-align:right; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:13.5px; color:#D5D7E2">{{ p.kda }}</div>
+          <div style="padding:12px 10px; text-align:right; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:13.5px; color:#9DA1B4">{{ p.gold }}</div>
+          <div style="padding:12px 10px; text-align:right; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:13.5px; color:#35F0DC">{{ p.wge }}</div>
+          <div style="padding:12px 16px 12px 10px; text-align:right; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:13.5px; font-weight:700; color:#FFC24A">{{ p.pci }}</div>
         </div>
       </sc-for>
     </div>
     <div style="display:flex; flex-direction:column; gap:7px; margin-top:18px">
-      <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:#6E7288"><span style="color:#FFC24A">PCI+</span> — share of match-state control derived from map pressure, objective setup and fight leverage. What it shows: the flow of the game the scoreboard never prints. <a href="about.html">Method</a></p>
-      <p style="margin:0; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:#6E7288"><span style="color:#35F0DC">wGE+</span> — gold earned re-weighted by timing, role and conversion into map value. What it shows: who is earning gold that actually moves the game. <a href="about.html">Method</a></p>
+      <p style="margin:0; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; line-height:1.6; color:#6E7288"><span style="color:#FFC24A">PCI+</span> — share of match-state control derived from map pressure, objective setup and fight leverage. What it shows: the flow of the game the scoreboard never prints. <a href="about.html">Method</a></p>
+      <p style="margin:0; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12px; line-height:1.6; color:#6E7288"><span style="color:#35F0DC">wGE+</span> — gold earned re-weighted by timing, role and conversion into map value. What it shows: who is earning gold that actually moves the game. <a href="about.html">Method</a></p>
     </div>
   </section>
 
   <section data-screen-label="Match CTA" style="max-width:1220px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(50px,6vw,80px)">
     <div style="border:1px solid rgba(53,240,220,0.22); border-radius:22px; background:radial-gradient(700px 320px at 80% 120%, rgba(123,43,255,0.2), transparent 70%), linear-gradient(180deg, rgba(53,240,220,0.06), rgba(255,255,255,0.012)); padding:clamp(24px,3.4vw,44px); display:flex; align-items:center; gap:clamp(20px,3vw,44px); flex-wrap:wrap">
       <div style="flex:1 1 340px">
-        <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(24px,3.2vw,42px); line-height:1.05; margin:0 0 14px; text-wrap:balance">Next game, watch it live — with Muse.</h2>
+        <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(24px,3.2vw,42px); line-height:1.05; margin:0 0 14px; text-wrap:balance">Next game, watch it live — with Muse.</h2>
         <p style="font-size:clamp(14.5px,1.3vw,18px); color:#9DA1B4; margin:0 0 24px; max-width:46ch">These numbers update in real time inside the side panel, while the game is still being played.</p>
-        <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:11px; padding:15px 27px; border-radius:13px; background:#35F0DC; color:#04141A; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(15px,1.5vw,19px); box-shadow:0 0 40px rgba(53,240,220,0.28)" style-hover="background:#8CFFF1">
+        <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:11px; padding:15px 27px; border-radius:13px; background:#35F0DC; color:#04141A; font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(15px,1.5vw,19px); box-shadow:0 0 40px rgba(53,240,220,0.28)" style-hover="background:#8CFFF1">
           <span style="width:9px; height:9px; border-radius:50%; background:#04141A; display:inline-block"></span>Add RORR to Chrome
         </a>
       </div>
@@ -213,7 +220,7 @@
     <div style="max-width:1220px; margin:0 auto; display:flex; gap:clamp(24px,4vw,60px); flex-wrap:wrap; align-items:flex-start">
       <div style="flex:1 1 260px">
         <img src="assets/rorr-logo.png" alt="RORR" style="height:30px; width:auto; display:block; opacity:0.9" />
-        <p style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.1em; color:#6E7288; margin:14px 0 0; max-width:34ch; line-height:1.6">REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR</p>
+        <p style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.1em; color:#6E7288; margin:14px 0 0; max-width:34ch; line-height:1.6">REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR</p>
       </div>
       <div style="flex:1 1 200px; display:flex; flex-direction:column; gap:10px">
         <a href="https://rorr.club/terms" target="_blank" rel="noopener" style="font-size:14.5px; color:#9DA1B4" style-hover="color:#E8E9F0">Terms of Service</a>
@@ -238,6 +245,57 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
 const GOLD = '#FFC24A', CYAN = '#35F0DC';
 
+const KO = {
+  'Matches': '경기', 'About': '회사 소개', 'Add to Chrome': 'Chrome에 추가',
+  '2026 SUMMER · WEEK 6 · GAME 3': '2026 서머 · 6주차 · 3세트',
+  'FINAL': '종료', 'WINNER': '승리', 'SERIES 1-2': '시리즈 1-2', 'KILLS · 34:52': '킬 · 34:52',
+  'MATCH CONTROL INDEX': '경기 주도권 지수',
+  'Who held the game, minute by minute. Above the line is T1 control, below is Gen.G.': '분 단위로 누가 경기를 쥐었는지. 선 위는 T1의 주도권, 아래는 Gen.G입니다.',
+  'T1 AVG': 'T1 평균', 'GEN AVG': 'GEN 평균', 'PEAK SWING': '최대 변동',
+  'WEIGHTED GOLD EARNED · T1 PERSPECTIVE': '가중 획득 골드 · T1 관점',
+  "Hover an event node for Muse's read on the swing.": '이벤트 노드에 마우스를 올리면 그 변동에 대한 뮤즈의 해석이 나옵니다.',
+
+  'First blood · bot': '퍼스트 블러드 · 봇',
+  'Nothing decisive yet, but T1 bought a 40-second tempo window and used it on the second scuttle.': '결정적이진 않지만, T1이 40초의 템포를 벌어 두 번째 바다 게에 썼습니다.',
+  'Herald → tier 1 mid': '전령 → 미드 1차',
+  'This is where wGE+ splits from raw gold: the same 900g landed on the carry who converts it fastest.': '여기서 wGE+가 실측 골드와 갈립니다: 같은 900골드가 가장 빨리 전환하는 캐리에게 들어갔습니다.',
+  'Soul point drake': '소울 포인트 드래곤',
+  "Gen.G traded the drake for two towers. Fair on paper — but T1's control curve never dips again.": 'Gen.G가 드래곤을 타워 두 개와 바꿨습니다. 장부상으론 공평 — 하지만 T1의 주도권 곡선은 이후 한 번도 꺾이지 않습니다.',
+  'Baron steal': '바론 스틸',
+  'The swing of the match. +27.4 PCI+ in eleven seconds, and Gen.G lost every fight that followed.': '경기의 분기점. 11초 만에 PCI+ +27.4, 이후 Gen.G는 모든 교전을 내줍니다.',
+  'Closing ace': '마지막 에이스',
+  'By then wGE+ was +7.4k. The last fight was a formality the scoreboard finally caught up with.': '그때 wGE+는 +7.4k. 마지막 교전은 스코어보드가 뒤늦게 따라잡은 형식적 절차였습니다.',
+
+  'Moments that moved the number': '숫자를 움직인 순간들',
+  'OBJECTIVE': '오브젝트', 'TEAMFIGHT': '한타', 'BARON': '바론', 'CLOSE': '마무리',
+  'Herald into mid tier 1': '전령으로 미드 1차',
+  'A flat gold trade that quietly became a map-pressure lead.': '골드는 비슷한 교환, 조용히 맵 압박 우위로 바뀌었습니다.',
+  'Drake fight, 2-for-2': '드래곤 교전, 2대2',
+  'Even on kills, but T1 kept the fight on their side of river all game after.': '킬은 동일하지만, 이후 T1은 교전을 계속 자기 강가에서 열었습니다.',
+  'The steal': '그 스틸',
+  'Eleven seconds that decided the game — and the largest single PCI+ swing of the split.': '경기를 결정한 11초 — 이번 시즌 최대 PCI+ 단일 변동입니다.',
+  'Ace into nexus': '에이스 후 넥서스',
+  'A formality by the numbers: control had not been contested for six minutes.': '숫자상 형식적 절차: 6분간 주도권은 다툼조차 없었습니다.',
+
+  'Player metrics': '선수 지표', 'PLAYER': '선수', 'GOLD': '골드',
+  '— share of match-state control derived from map pressure, objective setup and fight leverage. What it shows: the flow of the game the scoreboard never prints.': ' — 맵 압박, 오브젝트 세팅, 교전 레버리지에서 도출한 경기 주도권 점유율. 보여주는 것: 스코어보드가 찍지 않는 경기의 흐름. ',
+  '— gold earned re-weighted by timing, role and conversion into map value. What it shows: who is earning gold that actually moves the game.': ' — 타이밍, 역할, 맵 가치 전환으로 재가중한 획득 골드. 보여주는 것: 실제로 경기를 움직이는 골드를 누가 벌고 있는지. ',
+  'Method': '산출 방식',
+
+  'Next game, watch it live — with Muse.': '다음 경기는 실시간으로 — 뮤즈와 함께.',
+  'These numbers update in real time inside the side panel, while the game is still being played.': '이 숫자들은 경기가 진행되는 동안 사이드 패널에서 실시간으로 갱신됩니다.',
+  'Add RORR to Chrome': 'Chrome에 RORR 추가',
+
+  'REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR': '실시간 라이브 이벤트 온톨로지 엔진 · 첫 번째 애플리케이션: RORR',
+  'Terms of Service': '이용약관', 'Privacy Policy': '개인정보처리방침',
+  'Partnership Inquiries': '파트너십 문의', 'Chrome Web Store': 'Chrome 웹스토어',
+  "RORR isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties.": 'RORR은 Riot Games의 승인을 받지 않았으며, Riot Games 또는 Riot Games 자산의 제작·운영에 공식적으로 관여한 누구의 견해도 대변하지 않습니다.',
+  'League of Legends, LCK and all related logos and names are trademarks or registered trademarks of Riot Games, Inc. and their respective owners. Team, player and league marks shown here belong to their respective rights holders.': '리그 오브 레전드, LCK 및 관련 로고와 명칭은 Riot Games, Inc. 및 각 권리자의 상표 또는 등록상표입니다. 여기 표시된 팀·선수·리그 표장은 각 권리자에게 귀속됩니다.',
+  'Match data is provided under an official Live Stats agreement. PCI+, wGE+ and other derived metrics are calculated by us and are not official records.': '경기 데이터는 공식 Live Stats 계약에 따라 제공됩니다. PCI+, wGE+ 등 파생 지표는 당사가 산출한 값이며 공식 기록이 아닙니다.',
+  'Pitch Interactive Inc. · Business reg. 444-87-03154 · Representative: MANSOO CHO · +82-507-1355-8549': '주식회사 피치인터랙티브 · 사업자등록번호 444-87-03154 · 대표 조만수 · 0507-1355-8549',
+  '4F, Office Building, Pangyo Global Biz Center, 43, Changup-ro, Sujeong-gu, Seongnam-si, Gyeonggi-do, 13449, Republic of Korea': '경기도 성남시 수정구 창업로 43 판교글로벌비즈센터 오피스동 4층 (13449)'
+};
+
 const EVENTS = [
   { x: 18, y: 34, time: '08:12', title: 'First blood · bot', color: CYAN, text: "Nothing decisive yet, but T1 bought a 40-second tempo window and used it on the second scuttle." },
   { x: 36, y: 46, time: '14:40', title: 'Herald → tier 1 mid', color: CYAN, text: "This is where wGE+ splits from raw gold: the same 900g landed on the carry who converts it fastest." },
@@ -247,7 +305,42 @@ const EVENTS = [
 ];
 
 class Component extends DCLogic {
-  state = { tip: null };
+  state = { tip: null, lang: 'en' };
+
+  setLang(l) {
+    if (l === this.state.lang) return;
+    try { localStorage.setItem('rorr-lang', l); } catch (e) {}
+    this.setState({ lang: l }, () => this.applyLang());
+  }
+
+  applyLang() {
+    const ko = this.state.lang === 'ko';
+    document.documentElement.lang = ko ? 'ko' : 'en';
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => {
+        const p = n.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        const tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEXTAREA') return NodeFilter.FILTER_REJECT;
+        return n.nodeValue && n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((n) => {
+      if (ko) {
+        const v = KO[n.nodeValue.trim()];
+        if (v && n.nodeValue !== v) { if (n.__en == null) n.__en = n.nodeValue; n.nodeValue = v; }
+      } else if (n.__en != null) {
+        n.nodeValue = n.__en; n.__en = null;
+      }
+    });
+  }
+
+  componentDidUpdate() {
+    if (this._laf) return;
+    this._laf = requestAnimationFrame(() => { this._laf = null; this.applyLang(); });
+  }
 
   renderVals() {
     const t = this.state.tip;
@@ -255,6 +348,12 @@ class Component extends DCLogic {
     const pciSeed = [48,44,39,42,36,41,33,38,45,40,47,52,49,55,51,58,54,46,43,49,56,52,60,57,64,59,68,88,84,80,86,82,89,85,91,94];
     return {
       bgRef: (el) => { this._canvas = el; },
+      setEn: () => this.setLang('en'),
+      setKo: () => this.setLang('ko'),
+      enBg: this.state.lang === 'en' ? '#35F0DC' : 'transparent',
+      enFg: this.state.lang === 'en' ? '#04141A' : '#9DA1B4',
+      koBg: this.state.lang === 'ko' ? '#35F0DC' : 'transparent',
+      koFg: this.state.lang === 'ko' ? '#04141A' : '#9DA1B4',
       pciBars: pciSeed.map((v) => ({ up: Math.max(0, (v - 50) * 2), down: Math.max(0, (50 - v) * 2) })),
       wgeBars: [22,26,24,30,28,34,31,38,42,39,46,44,50,47,54,58,53,60,57,64,68,62,70,74,80,77,84,88,92,97]
         .map((h, i) => ({ h, c: i > 22 ? CYAN : 'rgba(53,240,220,0.38)' })),
@@ -287,10 +386,17 @@ class Component extends DCLogic {
     };
   }
 
-  componentDidMount() { this.initBackground(); }
+  componentDidMount() {
+    let saved = 'en';
+    try { saved = localStorage.getItem('rorr-lang') === 'ko' ? 'ko' : 'en'; } catch (e) {}
+    if (saved === 'ko') this.setState({ lang: 'ko' });
+    this.applyLang();
+    this.initBackground();
+  }
 
   componentWillUnmount() {
     cancelAnimationFrame(this._raf);
+    if (this._laf) cancelAnimationFrame(this._laf);
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('pointermove', this._onMove);
   }

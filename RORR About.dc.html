@@ -10,10 +10,13 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Gothic+A1:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 <style>
   html, body { margin:0; padding:0; background:#0A0A0F; }
-  body { font-family:'Barlow', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  body { font-family:'Barlow','Pretendard Variable','Pretendard',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  html[lang="ko"] body { word-break:keep-all; }
+  html[lang="ko"] h1, html[lang="ko"] h2 { letter-spacing:-0.03em; line-height:1.16; }
   * { box-sizing:border-box; }
   a { color:#35F0DC; text-decoration:none; }
   a:hover { color:#8CFFF1; }
@@ -32,34 +35,38 @@
     <div style="display:flex; align-items:center; gap:clamp(14px,2.2vw,30px); flex-wrap:wrap">
       <a href="RORR%20Matches.dc.html" style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; color:#9DA1B4" style-hover="color:#E8E9F0">Matches</a>
       <a href="RORR%20About.dc.html" style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; color:#E8E9F0" style-hover="color:#35F0DC">About</a>
+      <div style="display:flex; align-items:center; gap:2px; padding:3px; border:1px solid rgba(255,255,255,0.16); border-radius:999px">
+        <button onClick="{{ setEn }}" style="cursor:pointer; border:none; border-radius:999px; padding:6px 11px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; font-weight:700; letter-spacing:0.1em; transition:background .25s ease, color .25s ease; background: {{ enBg }}; color: {{ enFg }}">EN</button>
+        <button onClick="{{ setKo }}" style="cursor:pointer; border:none; border-radius:999px; padding:6px 11px; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; font-weight:700; letter-spacing:0.1em; transition:background .25s ease, color .25s ease; background: {{ koBg }}; color: {{ koFg }}">KO</button>
+      </div>
       <a href="mailto:info@rorr.club" style="display:flex; align-items:center; gap:9px; padding:10px 18px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); color:#E8E9F0; font-weight:600; font-size:14px" style-hover="border-color:#35F0DC; color:#35F0DC">Partnership</a>
     </div>
   </nav>
 
   <section data-screen-label="Vision" style="max-width:1180px; margin:0 auto; padding:clamp(60px,9vw,130px) clamp(16px,4vw,56px) clamp(50px,6vw,90px)">
-    <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288; margin-bottom:24px">COMPANY</div>
-    <h1 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(32px,5.2vw,68px); line-height:1.05; letter-spacing:-0.02em; margin:0 0 26px; max-width:20ch; text-wrap:balance">A real-time live event ontology engine company.</h1>
+    <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288; margin-bottom:24px">COMPANY</div>
+    <h1 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(32px,5.2vw,68px); line-height:1.05; letter-spacing:-0.02em; margin:0 0 26px; max-width:20ch; text-wrap:balance">A real-time live event ontology engine company.</h1>
     <p style="font-size:clamp(16px,1.5vw,21px); line-height:1.6; color:#9DA1B4; max-width:60ch; margin:0 0 40px; text-wrap:pretty">We structure what is happening inside a live event — its events, context and causality — while it is still happening. Our first application is RORR. Our first market is esports.</p>
     <div style="display:flex; flex-wrap:wrap; gap:clamp(14px,2vw,20px)">
       <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
         <div style="flex:1 1 220px; min-width:200px; border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:18px 20px; background:rgba(255,255,255,0.022)">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.16em; color:#6E7288">{{ f.k }}</div>
-          <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:19px; margin-top:8px; line-height:1.3">{{ f.v }}</div>
+          <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:10.5px; letter-spacing:0.16em; color:#6E7288">{{ f.k }}</div>
+          <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:19px; margin-top:8px; line-height:1.3">{{ f.v }}</div>
         </div>
       </sc-for>
     </div>
   </section>
 
   <section data-screen-label="Engine" style="max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(50px,6vw,90px)">
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 14px; letter-spacing:-0.015em">The engine, in three layers</h2>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 14px; letter-spacing:-0.015em">The engine, in three layers</h2>
     <p style="font-size:clamp(15px,1.35vw,18px); line-height:1.6; color:#9DA1B4; max-width:56ch; margin:0 0 40px; text-wrap:pretty">Official data in, structured match understanding out, applications on top.</p>
 
     <div style="display:flex; flex-direction:column; gap:14px">
       <div style="border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:clamp(18px,2.4vw,28px); background:rgba(255,255,255,0.022)">
         <div style="display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#6E7288; border:1px solid rgba(255,255,255,0.14); border-radius:7px; padding:5px 10px; flex:none">LAYER 1</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.16em; color:#6E7288; border:1px solid rgba(255,255,255,0.14); border-radius:7px; padding:5px 10px; flex:none">LAYER 1</span>
           <div style="flex:1 1 260px; min-width:0">
-            <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:clamp(18px,1.9vw,23px); margin-bottom:6px">Official data intake</div>
+            <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:clamp(18px,1.9vw,23px); margin-bottom:6px">Official data intake</div>
             <div style="font-size:15.5px; line-height:1.55; color:#9DA1B4">Live Stats feeds received under agreement, normalized into a single event stream with sub-second alignment to broadcast.</div>
           </div>
           <div style="flex:0 1 220px; display:flex; gap:6px; align-items:center; min-width:180px">
@@ -70,13 +77,13 @@
         </div>
       </div>
 
-      <div style="display:flex; justify-content:center; color:#3A3F55; font-family:'JetBrains Mono',monospace; font-size:14px">↓</div>
+      <div style="display:flex; justify-content:center; color:#3A3F55; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:14px">↓</div>
 
       <div style="border:1px solid rgba(53,240,220,0.3); border-radius:18px; padding:clamp(20px,2.8vw,34px); background:linear-gradient(180deg, rgba(53,240,220,0.07), rgba(255,255,255,0.012))">
         <div style="display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#35F0DC; border:1px solid rgba(53,240,220,0.4); border-radius:7px; padding:5px 10px; flex:none">LAYER 2</span>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.16em; color:#35F0DC; border:1px solid rgba(53,240,220,0.4); border-radius:7px; padding:5px 10px; flex:none">LAYER 2</span>
           <div style="flex:1 1 300px; min-width:0">
-            <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:clamp(20px,2.2vw,27px); margin-bottom:6px; color:#35F0DC">Real-time ontology engine</div>
+            <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:clamp(20px,2.2vw,27px); margin-bottom:6px; color:#35F0DC">Real-time ontology engine</div>
             <div style="font-size:15.5px; line-height:1.55; color:#B9BCCB; max-width:56ch">Events are resolved into entities, states and causal relations as the match runs — so a question about the current fight has a structured answer, not a retrieval guess. WRC+ operates here as a component of the engine.</div>
           </div>
           <div style="flex:0 1 200px; min-width:170px; display:grid; grid-template-columns:repeat(4,1fr); gap:7px">
@@ -87,13 +94,13 @@
         </div>
       </div>
 
-      <div style="display:flex; justify-content:center; color:#3A3F55; font-family:'JetBrains Mono',monospace; font-size:14px">↓</div>
+      <div style="display:flex; justify-content:center; color:#3A3F55; font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:14px">↓</div>
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px">
         <sc-for list="{{ apps }}" as="a" hint-placeholder-count="3">
           <div style="border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:clamp(18px,2.2vw,26px); background:rgba(255,255,255,0.022)">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#6E7288">LAYER 3</span>
-            <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:19px; margin:10px 0 7px">{{ a.t }}</div>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.16em; color:#6E7288">LAYER 3</span>
+            <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:19px; margin:10px 0 7px">{{ a.t }}</div>
             <div style="font-size:14.5px; line-height:1.5; color:#9DA1B4">{{ a.d }}</div>
           </div>
         </sc-for>
@@ -104,13 +111,13 @@
   <section data-screen-label="Data trust" style="max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(50px,6vw,90px)">
     <div style="border:1px solid rgba(255,255,255,0.09); border-radius:20px; padding:clamp(22px,3vw,40px); background:rgba(255,255,255,0.022); display:flex; gap:clamp(20px,3vw,48px); flex-wrap:wrap">
       <div style="flex:1 1 320px">
-        <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(22px,2.8vw,34px); margin:0 0 14px; letter-spacing:-0.01em">Data we are allowed to use</h2>
+        <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(22px,2.8vw,34px); margin:0 0 14px; letter-spacing:-0.01em">Data we are allowed to use</h2>
         <p style="font-size:15.5px; line-height:1.6; color:#9DA1B4; margin:0; max-width:52ch; text-wrap:pretty">Match data is provided under an official Live Stats agreement. Derived metrics such as PCI+ and wGE+ are our own calculations and are labelled as unofficial wherever they appear — on the product, on match pages, and in any partner-facing report.</p>
       </div>
       <div style="flex:1 1 260px; display:flex; flex-direction:column; gap:10px">
         <sc-for list="{{ trust }}" as="t" hint-placeholder-count="3">
           <div style="display:flex; gap:12px; align-items:flex-start; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:13px 15px; background:rgba(10,10,15,0.5)">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#35F0DC; flex:none; padding-top:2px">{{ t.k }}</span>
+            <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; color:#35F0DC; flex:none; padding-top:2px">{{ t.k }}</span>
             <span style="font-size:14.5px; line-height:1.5; color:#B9BCCB">{{ t.v }}</span>
           </div>
         </sc-for>
@@ -119,44 +126,44 @@
   </section>
 
   <section data-screen-label="Metric value" style="max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(50px,6vw,90px)">
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 14px; letter-spacing:-0.015em">What derived metrics could be worth to a team or a league</h2>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 14px; letter-spacing:-0.015em">What derived metrics could be worth to a team or a league</h2>
     <p style="font-size:clamp(15px,1.35vw,18px); line-height:1.6; color:#9DA1B4; max-width:58ch; margin:0 0 40px; text-wrap:pretty">Three directions we believe PCI+ and wGE+ can open. Stated as possibility, not as proven outcome.</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(14px,2vw,20px)">
       <sc-for list="{{ b2bValue }}" as="v" hint-placeholder-count="3">
         <div style="border:1px solid rgba(255,255,255,0.09); border-radius:18px; padding:clamp(20px,2.4vw,28px); background:rgba(255,255,255,0.022); display:flex; flex-direction:column; gap:12px">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#FFC24A">{{ v.n }}</span>
-          <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:clamp(19px,2vw,23px); line-height:1.25">{{ v.t }}</div>
+          <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.16em; color:#FFC24A">{{ v.n }}</span>
+          <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:clamp(19px,2vw,23px); line-height:1.25">{{ v.t }}</div>
           <div style="font-size:15px; line-height:1.55; color:#9DA1B4; text-wrap:pretty">{{ v.d }}</div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.5; color:#8A8DA0; border-left:2px solid rgba(255,194,74,0.4); padding-left:11px; margin-top:auto">{{ v.e }}</div>
+          <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:12.5px; line-height:1.5; color:#8A8DA0; border-left:2px solid rgba(255,194,74,0.4); padding-left:11px; margin-top:auto">{{ v.e }}</div>
         </div>
       </sc-for>
     </div>
   </section>
 
   <section data-screen-label="Expansion" style="max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(50px,6vw,90px)">
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 34px; letter-spacing:-0.015em">Where the engine goes next</h2>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 34px; letter-spacing:-0.015em">Where the engine goes next</h2>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; align-items:stretch">
       <sc-for list="{{ expansion }}" as="e" hint-placeholder-count="3">
         <div style="border:1px solid rgba(255,255,255,0.09); border-left-width:3px; border-left-color: {{ e.accent }}; border-radius:14px; padding:22px 24px; background:linear-gradient(100deg, {{ e.wash }}, rgba(255,255,255,0.012))">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#6E7288">{{ e.phase }}</div>
-          <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:21px; margin:9px 0 8px">{{ e.t }}</div>
+          <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.16em; color:#6E7288">{{ e.phase }}</div>
+          <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:21px; margin:9px 0 8px">{{ e.t }}</div>
           <div style="font-size:14.5px; line-height:1.5; color:#9DA1B4">{{ e.d }}</div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#5C6076; margin-top:14px">TAM · [placeholder]</div>
+          <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#5C6076; margin-top:14px">TAM · [placeholder]</div>
         </div>
       </sc-for>
     </div>
   </section>
 
   <section data-screen-label="Offering" style="max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(50px,6vw,90px)">
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 34px; letter-spacing:-0.015em">For leagues and teams</h2>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 34px; letter-spacing:-0.015em">For leagues and teams</h2>
     <div style="display:flex; gap:clamp(14px,2vw,20px); flex-wrap:wrap">
       <sc-for list="{{ offerings }}" as="o" hint-placeholder-count="2">
         <div style="flex:1 1 320px; min-width:280px; border:1px solid rgba(53,240,220,0.22); border-radius:20px; padding:clamp(22px,2.8vw,34px); background:linear-gradient(180deg, rgba(53,240,220,0.05), rgba(255,255,255,0.012))">
-          <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(21px,2.2vw,27px); margin-bottom:12px">{{ o.t }}</div>
+          <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(21px,2.2vw,27px); margin-bottom:12px">{{ o.t }}</div>
           <div style="font-size:15.5px; line-height:1.6; color:#9DA1B4; margin-bottom:18px; text-wrap:pretty">{{ o.d }}</div>
           <div style="display:flex; flex-wrap:wrap; gap:8px">
             <sc-for list="{{ o.tags }}" as="tag" hint-placeholder-count="3">
-              <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#8A8DA0; border:1px solid rgba(255,255,255,0.12); border-radius:7px; padding:5px 10px">{{ tag.t }}</span>
+              <span style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; color:#8A8DA0; border:1px solid rgba(255,255,255,0.12); border-radius:7px; padding:5px 10px">{{ tag.t }}</span>
             </sc-for>
           </div>
         </div>
@@ -165,7 +172,7 @@
   </section>
 
   <section data-screen-label="Team" style="max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(50px,6vw,90px)">
-    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 34px; letter-spacing:-0.015em">Founders</h2>
+    <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(26px,3.4vw,44px); line-height:1.1; margin:0 0 34px; letter-spacing:-0.015em">Founders</h2>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:clamp(14px,2vw,20px)">
       <sc-for list="{{ team }}" as="m" hint-placeholder-count="4">
         <div style="border:1px solid rgba(255,255,255,0.09); border-radius:18px; overflow:hidden; background:rgba(255,255,255,0.022)">
@@ -174,8 +181,8 @@
             <div style="position:absolute; inset:0; background:linear-gradient(180deg, transparent 60%, rgba(10,10,15,0.85))"></div>
           </div>
           <div style="padding:18px 20px">
-            <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:19px">{{ m.name }}</div>
-            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#35F0DC; margin-top:5px">{{ m.role }}</div>
+            <div style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:600; font-size:19px">{{ m.name }}</div>
+            <div style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11px; letter-spacing:0.14em; color:#35F0DC; margin-top:5px">{{ m.role }}</div>
             <div style="font-size:14.5px; line-height:1.5; color:#9DA1B4; margin-top:10px">{{ m.bio }}</div>
           </div>
         </div>
@@ -185,9 +192,9 @@
 
   <section data-screen-label="B2B CTA" style="max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,56px) clamp(50px,6vw,80px)">
     <div style="border:1px solid rgba(255,255,255,0.12); border-radius:22px; padding:clamp(28px,4vw,60px); background:rgba(255,255,255,0.025); text-align:center">
-      <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(24px,3.2vw,40px); line-height:1.1; margin:0 0 14px; letter-spacing:-0.015em">Let's talk about what the engine could do for your league.</h2>
+      <h2 style="font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(24px,3.2vw,40px); line-height:1.1; margin:0 0 14px; letter-spacing:-0.015em">Let's talk about what the engine could do for your league.</h2>
       <p style="font-size:clamp(15px,1.35vw,18px); color:#9DA1B4; margin:0 auto 28px; max-width:52ch; text-wrap:pretty">Partnership, data collaboration and pilot inquiries.</p>
-      <a href="mailto:info@rorr.club" style="display:inline-flex; align-items:center; gap:11px; padding:16px 32px; border-radius:13px; background:#E8E9F0; color:#0A0A0F; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(15px,1.5vw,19px)" style-hover="background:#FFFFFF; color:#0A0A0F">Contact us — info@rorr.club</a>
+      <a href="mailto:info@rorr.club" style="display:inline-flex; align-items:center; gap:11px; padding:16px 32px; border-radius:13px; background:#E8E9F0; color:#0A0A0F; font-family:'Chakra Petch','Gothic A1',sans-serif; font-weight:700; font-size:clamp(15px,1.5vw,19px)" style-hover="background:#FFFFFF; color:#0A0A0F">Contact us — info@rorr.club</a>
     </div>
   </section>
 
@@ -195,7 +202,7 @@
     <div style="max-width:1180px; margin:0 auto; display:flex; gap:clamp(24px,4vw,60px); flex-wrap:wrap; align-items:flex-start">
       <div style="flex:1 1 260px">
         <img src="assets/rorr-logo.png" alt="RORR" style="height:30px; width:auto; display:block; opacity:0.9" />
-        <p style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.1em; color:#6E7288; margin:14px 0 0; max-width:34ch; line-height:1.6">REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR</p>
+        <p style="font-family:'JetBrains Mono','Pretendard Variable','Pretendard',monospace; font-size:11.5px; letter-spacing:0.1em; color:#6E7288; margin:14px 0 0; max-width:34ch; line-height:1.6">REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR</p>
       </div>
       <div style="flex:1 1 200px; display:flex; flex-direction:column; gap:10px">
         <a href="https://rorr.club/terms" target="_blank" rel="noopener" style="font-size:14.5px; color:#9DA1B4" style-hover="color:#E8E9F0">Terms of Service</a>
@@ -218,10 +225,127 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
+const KO = {
+  'Matches': '경기', 'About': '회사 소개', 'Partnership': '파트너십',
+  'COMPANY': '회사',
+  'A real-time live event ontology engine company.': '실시간 라이브 이벤트 온톨로지 엔진 회사.',
+  'We structure what is happening inside a live event — its events, context and causality — while it is still happening. Our first application is RORR. Our first market is esports.': '라이브 이벤트 안에서 벌어지는 일 — 사건, 문맥, 인과 — 을 그것이 벌어지는 동안 구조화합니다. 첫 번째 애플리케이션은 RORR, 첫 번째 시장은 e스포츠입니다.',
+  'FIRST APPLICATION': '첫 번째 애플리케이션', 'RORR — a live companion for esports viewers': 'RORR — e스포츠 시청자를 위한 실시간 동반자',
+  'FIRST MARKET': '첫 번째 시장', 'League of Legends esports, starting with LCK': '리그 오브 레전드 e스포츠, LCK부터',
+  'DATA BASIS': '데이터 기반', 'Official Live Stats agreement': '공식 Live Stats 계약',
+
+  'The engine, in three layers': '엔진, 세 개의 레이어',
+  'Official data in, structured match understanding out, applications on top.': '공식 데이터가 들어오고, 구조화된 경기 이해가 나오고, 그 위에 애플리케이션이 올라갑니다.',
+  'LAYER 1': '레이어 1', 'LAYER 2': '레이어 2', 'LAYER 3': '레이어 3',
+  'Official data intake': '공식 데이터 수집',
+  'Live Stats feeds received under agreement, normalized into a single event stream with sub-second alignment to broadcast.': '계약에 따라 수신한 Live Stats 피드를 하나의 이벤트 스트림으로 정규화하고, 중계와 1초 이내로 정렬합니다.',
+  'Real-time ontology engine': '실시간 온톨로지 엔진',
+  'Events are resolved into entities, states and causal relations as the match runs — so a question about the current fight has a structured answer, not a retrieval guess. WRC+ operates here as a component of the engine.': '경기가 진행되는 동안 이벤트가 엔티티·상태·인과 관계로 해석됩니다 — 그래서 지금 이 교전에 대한 질문에는 검색 추측이 아니라 구조화된 답이 있습니다. WRC+는 이 엔진의 구성 요소로 동작합니다.',
+  'The consumer side panel: live reactions and level-matched commentary for fans.': '소비자용 사이드 패널: 팬을 위한 실시간 반응과 눈높이 해설.',
+  'Derived metrics': '파생 지표',
+  'PCI+, wGE+ and related indices, published per match and exposed via API.': 'PCI+, wGE+ 및 관련 지표를 경기별로 공개하고 API로 제공합니다.',
+  'B2B dashboards': 'B2B 대시보드',
+  'Moment-level views for teams, leagues and rights holders.': '팀·리그·권리자를 위한 순간 단위 뷰.',
+
+  'Data we are allowed to use': '우리가 사용할 수 있는 데이터',
+  'Match data is provided under an official Live Stats agreement. Derived metrics such as PCI+ and wGE+ are our own calculations and are labelled as unofficial wherever they appear — on the product, on match pages, and in any partner-facing report.': '경기 데이터는 공식 Live Stats 계약에 따라 제공됩니다. PCI+, wGE+ 같은 파생 지표는 당사 산출값이며, 제품·경기 페이지·파트너 리포트 어디에 나타나든 비공식으로 표기됩니다.',
+  'Contract-based intake only. No scraping, no reconstruction from broadcast video.': '계약 기반 수집만. 스크래핑도, 중계 영상 복원도 하지 않습니다.',
+  'Derived metrics are always labelled as unofficial and separated from official records.': '파생 지표는 항상 비공식으로 표기하고 공식 기록과 분리합니다.',
+  'Team, player and league marks remain with their rights holders.': '팀·선수·리그 표장은 각 권리자에게 귀속됩니다.',
+
+  'What derived metrics could be worth to a team or a league': '파생 지표가 팀과 리그에 가질 수 있는 가치',
+  'Three directions we believe PCI+ and wGE+ can open. Stated as possibility, not as proven outcome.': 'PCI+와 wGE+가 열 수 있다고 보는 세 가지 방향. 입증된 결과가 아니라 가능성으로 적었습니다.',
+  'DIRECTION 01': '방향 01', 'DIRECTION 02': '방향 02', 'DIRECTION 03': '방향 03',
+  'Performance insight': '경기력 인사이트',
+  'Flow and contribution that the scoreboard never records — quantified. A different lens for coaching review, scrim analysis and scouting.': '스코어보드가 기록하지 않는 흐름과 기여를 수치화합니다. 코칭 리뷰, 스크림 분석, 스카우팅을 위한 또 하나의 렌즈.',
+  'e.g. "which jungler holds control through the mid game, not just farm?"': '예: "파밍이 아니라 미드 게임 주도권을 쥐는 정글러는 누구인가?"',
+  'Fan engagement asset': '팬 인게이지먼트 자산',
+  'Metrics create arguments, and arguments create content. A weekly PCI+ leaderboard can become a recurring format for team channels and communities.': '지표는 논쟁을 만들고, 논쟁은 콘텐츠를 만듭니다. 주간 PCI+ 리더보드는 팀 채널과 커뮤니티의 고정 포맷이 될 수 있습니다.',
+  'e.g. "who topped PCI+ this week?" as a standing content slot': '예: "이번 주 PCI+ 1위는?"을 정규 콘텐츠 슬롯으로',
+  'Sponsorship inventory': '스폰서십 인벤토리',
+  'Every metric surface is a branding slot. Where an index appears — broadcast, panel, match page — a sponsor can appear with it.': '지표가 노출되는 모든 지면이 브랜딩 슬롯입니다. 중계, 패널, 경기 페이지 — 지표가 있는 곳에 스폰서가 함께 있을 수 있습니다.',
+
+  'Where the engine goes next': '엔진이 다음으로 가는 곳',
+  'NOW': '현재', 'NEXT': '다음', 'BEYOND': '그 이후',
+  'Esports': 'e스포츠', 'LoL first, then adjacent titles with structured live feeds.': 'LoL을 시작으로, 구조화된 실시간 피드가 있는 인접 종목으로.',
+  'Sports analytics': '스포츠 애널리틱스', 'The same event-and-causality model applied to traditional sports data.': '같은 사건–인과 모델을 전통 스포츠 데이터에 적용합니다.',
+  'Live event AI': '라이브 이벤트 AI', 'Any live event where understanding what is happening, right now, has value.': '지금 무엇이 벌어지는지 이해하는 것이 가치가 되는 모든 라이브 이벤트.',
+
+  'For leagues and teams': '리그와 팀을 위해',
+  'Fan engagement infrastructure': '팬 인게이지먼트 인프라',
+  'A companion layer for your broadcast audience — live explanation, reaction and metrics, on the stream page you already own.': '중계 시청자를 위한 동반 레이어 — 이미 보유한 스트림 페이지 위에 실시간 설명과 반응, 지표를 올립니다.',
+  'SIDE PANEL': '사이드 패널', 'CO-BRANDED': '공동 브랜딩', 'LIVE METRICS': '실시간 지표',
+  'Moment dashboard': '모먼트 대시보드',
+  'Match-level and season-level views of the moments that moved control, for analysts, content teams and commercial partners.': '주도권을 움직인 순간을 경기 단위와 시즌 단위로 보여줍니다. 분석가, 콘텐츠팀, 커머셜 파트너를 위한 뷰.',
+  'CLIP INDEX': '클립 인덱스',
+
+  'Founders': '창업팀',
+  'Esports operations and league partnerships. ex. KeSPA, SKT T1.': 'e스포츠 운영과 리그 파트너십. 前 KeSPA, SKT T1.',
+  'Real-time systems and game AI. ex. KT Research.': '실시간 시스템과 게임 AI. 前 KT 연구소.',
+  'Live service product and character IP.': '라이브 서비스 프로덕트와 캐릭터 IP.',
+  'Corporate strategy and global partnerships. ex. PlayStation PD.': '사업 전략과 글로벌 파트너십. 前 PlayStation PD.',
+
+  "Let's talk about what the engine could do for your league.": '이 엔진이 당신의 리그에서 무엇을 할 수 있을지 이야기해요.',
+  'Partnership, data collaboration and pilot inquiries.': '파트너십, 데이터 협업, 파일럿 문의.',
+  'Contact us — info@rorr.club': '문의하기 — info@rorr.club',
+
+  'REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR': '실시간 라이브 이벤트 온톨로지 엔진 · 첫 번째 애플리케이션: RORR',
+  'Terms of Service': '이용약관', 'Privacy Policy': '개인정보처리방침',
+  'Partnership Inquiries': '파트너십 문의', 'Chrome Web Store': 'Chrome 웹스토어',
+  "RORR isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties.": 'RORR은 Riot Games의 승인을 받지 않았으며, Riot Games 또는 Riot Games 자산의 제작·운영에 공식적으로 관여한 누구의 견해도 대변하지 않습니다.',
+  'League of Legends, LCK and all related logos and names are trademarks or registered trademarks of Riot Games, Inc. and their respective owners. Team, player and league marks shown here belong to their respective rights holders.': '리그 오브 레전드, LCK 및 관련 로고와 명칭은 Riot Games, Inc. 및 각 권리자의 상표 또는 등록상표입니다. 여기 표시된 팀·선수·리그 표장은 각 권리자에게 귀속됩니다.',
+  'Match data is provided under an official Live Stats agreement. PCI+, wGE+ and other derived metrics are calculated by us and are not official records.': '경기 데이터는 공식 Live Stats 계약에 따라 제공됩니다. PCI+, wGE+ 등 파생 지표는 당사가 산출한 값이며 공식 기록이 아닙니다.',
+  'Pitch Interactive Inc. · Business reg. 444-87-03154 · Representative: MANSOO CHO · +82-507-1355-8549': '주식회사 피치인터랙티브 · 사업자등록번호 444-87-03154 · 대표 조만수 · 0507-1355-8549',
+  '4F, Office Building, Pangyo Global Biz Center, 43, Changup-ro, Sujeong-gu, Seongnam-si, Gyeonggi-do, 13449, Republic of Korea': '경기도 성남시 수정구 창업로 43 판교글로벌비즈센터 오피스동 4층 (13449)'
+};
+
 class Component extends DCLogic {
+  state = { lang: 'en' };
+
+  setLang(l) {
+    if (l === this.state.lang) return;
+    try { localStorage.setItem('rorr-lang', l); } catch (e) {}
+    this.setState({ lang: l }, () => this.applyLang());
+  }
+
+  applyLang() {
+    const ko = this.state.lang === 'ko';
+    document.documentElement.lang = ko ? 'ko' : 'en';
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => {
+        const p = n.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        const tag = p.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEXTAREA') return NodeFilter.FILTER_REJECT;
+        return n.nodeValue && n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((n) => {
+      if (ko) {
+        const v = KO[n.nodeValue.trim()];
+        if (v && n.nodeValue !== v) { if (n.__en == null) n.__en = n.nodeValue; n.nodeValue = v; }
+      } else if (n.__en != null) {
+        n.nodeValue = n.__en; n.__en = null;
+      }
+    });
+  }
+
+  componentDidUpdate() {
+    if (this._laf) return;
+    this._laf = requestAnimationFrame(() => { this._laf = null; this.applyLang(); });
+  }
+
   renderVals() {
     return {
       bgRef: (el) => { this._canvas = el; },
+      setEn: () => this.setLang('en'),
+      setKo: () => this.setLang('ko'),
+      enBg: this.state.lang === 'en' ? '#35F0DC' : 'transparent',
+      enFg: this.state.lang === 'en' ? '#04141A' : '#9DA1B4',
+      koBg: this.state.lang === 'ko' ? '#35F0DC' : 'transparent',
+      koFg: this.state.lang === 'ko' ? '#04141A' : '#9DA1B4',
       facts: [
         { k: 'FIRST APPLICATION', v: 'RORR — a live companion for esports viewers' },
         { k: 'FIRST MARKET', v: 'League of Legends esports, starting with LCK' },
@@ -284,10 +408,17 @@ class Component extends DCLogic {
     };
   }
 
-  componentDidMount() { this.initBackground(); }
+  componentDidMount() {
+    let saved = 'en';
+    try { saved = localStorage.getItem('rorr-lang') === 'ko' ? 'ko' : 'en'; } catch (e) {}
+    if (saved === 'ko') this.setState({ lang: 'ko' });
+    this.applyLang();
+    this.initBackground();
+  }
 
   componentWillUnmount() {
     cancelAnimationFrame(this._raf);
+    if (this._laf) cancelAnimationFrame(this._laf);
     window.removeEventListener('resize', this._onResize);
   }
 
