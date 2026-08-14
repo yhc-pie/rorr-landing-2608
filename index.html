@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin:0; padding:0; background:#0A0A0F; }
+  body { font-family:'Barlow', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#35F0DC; text-decoration:none; }
+  a:hover { color:#8CFFF1; }
+  ::selection { background:#35F0DC; color:#04141A; }
+  @keyframes museFloat { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-14px) } }
+  @keyframes caret { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes livePulse { 0%,100%{ opacity:1; transform:scale(1) } 50%{ opacity:.35; transform:scale(.8) } }
+  @keyframes scan { 0%{ transform:translateY(-100%) } 100%{ transform:translateY(900%) } }
+  @keyframes barGrow { from { transform:scaleY(.15) } to { transform:scaleY(1) } }
+</style>
+</helmet>
+
+<canvas ref="{{ bgRef }}" style="position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:0.42"></canvas>
+
+<div style="position:relative; z-index:1; background:radial-gradient(1200px 700px at 50% -10%, rgba(123,43,255,0.16), transparent 70%), linear-gradient(180deg, rgba(10,10,15,0) 0%, rgba(10,10,15,0.55) 40%, #0A0A0F 100%); color:#E8E9F0; overflow-x:hidden">
+
+  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:14px clamp(16px,4vw,56px); background:rgba(10,10,15,0.72); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.07)">
+    <a href="#top" style="display:flex; align-items:center; gap:10px">
+      <img src="assets/rorr-logo.png" alt="RORR" style="height:34px; width:auto; display:block; filter:drop-shadow(0 0 14px rgba(123,43,255,0.55))" />
+    </a>
+    <div style="display:flex; align-items:center; gap:clamp(14px,2.2vw,30px); flex-wrap:wrap">
+      <a href="matches.html" style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; color:#9DA1B4" style-hover="color:#E8E9F0">Matches</a>
+      <a href="about.html" style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; color:#9DA1B4" style-hover="color:#E8E9F0">About</a>
+      <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:9px; padding:10px 18px; border-radius:999px; background:#35F0DC; color:#04141A; font-weight:700; font-size:14px; letter-spacing:0.02em; box-shadow:0 0 24px rgba(53,240,220,0.25)" style-hover="background:#8CFFF1; color:#04141A">
+        <span style="width:8px; height:8px; border-radius:50%; background:#04141A; display:inline-block"></span>Add to Chrome
+      </a>
+    </div>
+  </nav>
+
+  <section id="top" data-screen-label="Hero" style="position:relative; padding:clamp(56px,8vw,110px) clamp(16px,4vw,56px) clamp(60px,7vw,96px); max-width:1280px; margin:0 auto">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:22px">
+      <span style="width:7px; height:7px; border-radius:50%; background:#35F0DC; animation:livePulse 1.6s infinite"></span>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:#35F0DC">Live match intelligence · Chrome side panel</span>
+    </div>
+    <h1 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(38px,6.4vw,86px); line-height:0.98; letter-spacing:-0.02em; margin:0 0 20px; max-width:16ch; text-wrap:balance">The AI that knows <span style="color:#FFC24A">this</span> game, right now.</h1>
+    <p style="font-size:clamp(16px,1.5vw,21px); line-height:1.55; color:#9DA1B4; max-width:58ch; margin:0 0 40px; text-wrap:pretty">GPT knows yesterday's League. RORR knows this teamfight — every objective, every gold swing, every rotation, as it happens.</p>
+
+    <div style="display:flex; gap:clamp(24px,4vw,56px); align-items:flex-end; flex-wrap:wrap">
+      <div style="flex:1 1 520px; min-width:0">
+        <div style="position:relative; border-radius:18px; padding:1px; background:linear-gradient(120deg, rgba(53,240,220,0.55), rgba(123,43,255,0.35) 45%, rgba(255,194,74,0.35))">
+          <div style="display:flex; align-items:center; gap:14px; background:#0D0D14; border-radius:17px; padding:clamp(14px,1.6vw,20px) clamp(16px,1.8vw,22px)">
+            <span style="font-family:'JetBrains Mono',monospace; color:#35F0DC; font-size:15px">&gt;</span>
+            <div style="flex:1; min-width:0; font-family:'JetBrains Mono',monospace; font-size:clamp(13px,1.25vw,16px); line-height:1.5; color:#E8E9F0; min-height:24px; overflow:hidden">{{ typed }}<sc-if value="{{ showCaret }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block; width:8px; height:16px; background:#35F0DC; vertical-align:-2px; animation:caret 1s steps(1) infinite"></span></sc-if><sc-if value="{{ showHint }}" hint-placeholder-val="{{ true }}"><span style="color:#5C6076">Ask Muse anything about the game on your screen…</span></sc-if></div>
+            <button onClick="{{ onSend }}" style="flex:none; border:none; cursor:pointer; border-radius:11px; padding:11px 16px; background:rgba(53,240,220,0.14); color:#35F0DC; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px; letter-spacing:0.06em" style-hover="background:rgba(53,240,220,0.26)">ASK</button>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px">
+          <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="4">
+            <button onClick="{{ chip.pick }}" style="cursor:pointer; border-radius:999px; padding:9px 15px; font-family:'Barlow',sans-serif; font-size:13.5px; line-height:1.2; text-align:left; display:flex; align-items:center; gap:9px; transition:all .3s ease; background: {{ chip.bg }}; border:1px solid {{ chip.bd }}; color: {{ chip.fg }}; box-shadow: {{ chip.sh }}" style-hover="border-color:rgba(53,240,220,0.55); color:#E8E9F0">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color: {{ chip.tc }}">{{ chip.tier }}</span>{{ chip.q }}
+            </button>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:20px; border:1px solid rgba(255,255,255,0.08); border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)); padding:clamp(16px,2vw,24px); min-height:186px">
+          <div style="display:flex; align-items:center; gap:11px; margin-bottom:14px">
+            <img src="assets/muse-head2.png" alt="Muse" style="width:34px; height:34px; border-radius:50%; object-fit:cover; object-position:50% 18%; border:1px solid rgba(53,240,220,0.4); background:#15151F" />
+            <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:0.06em; font-size:14px">MUSE</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:#35F0DC; border:1px solid rgba(53,240,220,0.35); border-radius:5px; padding:2px 7px">LIVE · 24:10</span>
+          </div>
+          <p style="margin:0; font-size:clamp(14.5px,1.35vw,17px); line-height:1.62; color:#D5D7E2; min-height:52px; text-wrap:pretty">{{ answer }}<sc-if value="{{ streaming }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block; width:7px; height:15px; background:#FFC24A; vertical-align:-2px; margin-left:3px; animation:caret .8s steps(1) infinite"></span></sc-if></p>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:18px">
+            <sc-for list="{{ cards }}" as="card" hint-placeholder-count="0">
+              <div style="flex:1 1 190px; border:1px solid rgba(255,255,255,0.09); border-radius:13px; padding:13px 15px; background:rgba(10,10,15,0.55)">
+                <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px">
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:#8A8DA0">{{ card.label }}</span>
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6E7288">{{ card.sub }}</span>
+                </div>
+                <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:26px; margin-top:5px; color: {{ card.color }}">{{ card.value }}</div>
+                <sc-if value="{{ card.hasBar }}" hint-placeholder-val="{{ true }}">
+                  <div style="margin-top:10px; height:6px; border-radius:99px; background:rgba(255,255,255,0.08); overflow:hidden">
+                    <div style="height:100%; border-radius:99px; width: {{ card.pct }}%; background: {{ card.color }}; box-shadow:0 0 14px {{ card.color }}; transition:width .7s cubic-bezier(.2,.8,.2,1)"></div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ card.hasSpark }}" hint-placeholder-val="{{ true }}">
+                  <div style="margin-top:10px; height:34px; display:flex; align-items:flex-end; gap:3px">
+                    <sc-for list="{{ card.bars }}" as="bar" hint-placeholder-count="12">
+                      <div style="flex:1; border-radius:2px; height: {{ bar.h }}%; background: {{ bar.c }}; transform-origin:bottom; animation:barGrow .5s ease both"></div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:0 1 290px; display:flex; justify-content:center; align-self:stretch; align-items:flex-end; min-width:220px; position:relative">
+        <div style="position:absolute; bottom:6%; left:50%; transform:translateX(-50%); width:min(320px,90%); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle, rgba(123,43,255,0.34), transparent 65%); filter:blur(6px)"></div>
+        <img src="assets/muse-waving.png" alt="Muse" style="position:relative; width:100%; max-width:320px; height:auto; object-fit:contain; animation:museFloat 7s ease-in-out infinite; -webkit-mask-image:linear-gradient(180deg, #000 76%, transparent 99%); mask-image:linear-gradient(180deg, #000 76%, transparent 99%); filter:drop-shadow(0 22px 50px rgba(123,43,255,0.35))" />
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Story 01" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto; border-top:1px solid rgba(255,255,255,0.06)">
+    <div style="display:flex; gap:clamp(28px,4vw,64px); align-items:center; flex-wrap:wrap">
+      <div style="flex:1 1 380px; min-width:0">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 01 — THE GAP</span>
+        <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; text-wrap:balance">You stopped keeping up. Not because you stopped caring.</h2>
+        <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:52ch; margin:0 0 26px; text-wrap:pretty">New patch, new meta, rosters you don't recognize, a jungle route that apparently decided the game. The match is still on — you're just watching from further away every split.</p>
+        <p style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:clamp(19px,2vw,27px); color:#FFC24A; margin:0">Catch up with League again — free, from your next match.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:26px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8DA0; border:1px dashed rgba(255,255,255,0.14); border-radius:8px; padding:7px 12px">"who is that mid laner?"</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8DA0; border:1px dashed rgba(255,255,255,0.14); border-radius:8px; padding:7px 12px">"why is everyone screaming?"</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#8A8DA0; border:1px dashed rgba(255,255,255,0.14); border-radius:8px; padding:7px 12px">"is this comeback real?"</span>
+        </div>
+      </div>
+      <div style="flex:1 1 300px; display:flex; justify-content:center; position:relative; min-width:240px">
+        <div style="position:absolute; bottom:8%; width:min(300px,80%); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle, rgba(123,43,255,0.22), transparent 66%)"></div>
+        <img src="assets/muse-thinking.png" alt="Muse" style="position:relative; width:100%; max-width:300px; height:auto; -webkit-mask-image:linear-gradient(180deg,#000 74%,transparent 98%); mask-image:linear-gradient(180deg,#000 74%,transparent 98%); filter:drop-shadow(0 20px 44px rgba(0,0,0,0.6))" />
+        <div style="position:absolute; top:-6%; right:0; max-width:215px; background:rgba(18,18,26,0.92); border:1px solid rgba(255,255,255,0.1); border-radius:14px 14px 14px 4px; padding:12px 15px; font-size:14.5px; line-height:1.45; color:#D5D7E2; backdrop-filter:blur(8px)">I'll take it from here. Just watch — I'll tell you what matters.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Story 02" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 02 — WATCH TOGETHER</span>
+    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:20ch; text-wrap:balance">A game you watched alone becomes a game you watch together.</h2>
+    <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:56ch; margin:0 0 40px; text-wrap:pretty">Muse reads the live feed the same second you do. Kill, steal, ace — she reacts before the caster finishes the sentence.</p>
+
+    <div style="display:flex; gap:clamp(20px,3vw,40px); align-items:stretch; flex-wrap:wrap">
+      <div style="flex:2 1 480px; min-width:280px; border:1px solid rgba(255,255,255,0.09); border-radius:16px; overflow:hidden; background:#08080D">
+        <div style="display:flex; align-items:center; gap:8px; padding:10px 14px; background:rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.07)">
+          <span style="width:8px; height:8px; border-radius:50%; background:#FF5F57"></span><span style="width:8px; height:8px; border-radius:50%; background:#FFBD2E"></span><span style="width:8px; height:8px; border-radius:50%; background:#28C840"></span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#6E7288; margin-left:8px">youtube.com/@lck · LIVE</span>
+        </div>
+        <div style="position:relative; aspect-ratio:16/9; overflow:hidden; container-type:size; background:linear-gradient(160deg,#101623,#080810 60%)">
+          <div style="position:absolute; inset:0; background:repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 46px), repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 46px)"></div>
+          <div style="position:absolute; top:0; left:0; right:0; height:60px; background:linear-gradient(90deg, rgba(53,240,220,0.05), transparent); animation:scan 6s linear infinite"></div>
+          <div style="position:absolute; top:14px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:14px; background:rgba(8,8,13,0.82); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:8px 16px; font-family:'JetBrains Mono',monospace">
+            <span style="color:#E8E9F0; font-weight:700; font-size:14px">T1</span>
+            <span style="color:#FFC24A; font-weight:700; font-size:18px">14</span>
+            <span style="color:#6E7288; font-size:12px">24:10</span>
+            <span style="color:#FFC24A; font-weight:700; font-size:18px">11</span>
+            <span style="color:#E8E9F0; font-weight:700; font-size:14px">GEN</span>
+          </div>
+          <div style="position:absolute; inset:0; background:radial-gradient(420px 260px at 62% 58%, rgba(255,194,74,0.16), transparent 70%), radial-gradient(300px 200px at 28% 40%, rgba(53,240,220,0.10), transparent 70%)"></div>
+          <div style="position:absolute; inset:0; background:conic-gradient(from 210deg at 62% 58%, rgba(255,194,74,0.14), transparent 22%, transparent 78%, rgba(255,194,74,0.10)); mix-blend-mode:screen; opacity:.6"></div>
+          <div style="position:absolute; top:33%; left:2.5%; display:flex; flex-direction:column; gap:2.4%; max-height:52%">
+            <sc-for list="{{ blueTeam }}" as="p" hint-placeholder-count="5">
+              <div style="display:flex; align-items:center; gap:6px">
+                <div style="width:min(26px,7.5cqh); height:min(26px,7.5cqh); border-radius:4px; border:1px solid rgba(53,240,220,0.5); background: {{ p.bg }}; display:flex; align-items:flex-end; justify-content:flex-end">
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:8px; color:#04141A; background:#35F0DC; border-radius:2px; padding:0 2px; margin:1px">{{ p.lv }}</span>
+                </div>
+                <div style="width:min(44px,13cqh); height:min(5px,1.6cqh); border-radius:99px; background:rgba(255,255,255,0.12); overflow:hidden"><div style="height:100%; width: {{ p.hp }}%; background:#35F0DC"></div></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="position:absolute; top:33%; right:2.5%; display:flex; flex-direction:column; gap:2.4%; align-items:flex-end; max-height:52%">
+            <sc-for list="{{ redTeam }}" as="p" hint-placeholder-count="5">
+              <div style="display:flex; align-items:center; gap:6px; flex-direction:row-reverse">
+                <div style="width:min(26px,7.5cqh); height:min(26px,7.5cqh); border-radius:4px; border:1px solid rgba(255,94,94,0.5); background: {{ p.bg }}; display:flex; align-items:flex-end">
+                  <span style="font-family:'JetBrains Mono',monospace; font-size:8px; color:#1A0505; background:#FF7A7A; border-radius:2px; padding:0 2px; margin:1px">{{ p.lv }}</span>
+                </div>
+                <div style="width:min(44px,13cqh); height:min(5px,1.6cqh); border-radius:99px; background:rgba(255,255,255,0.12); overflow:hidden; direction:rtl"><div style="height:100%; width: {{ p.hp }}%; background:#FF7A7A"></div></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="position:absolute; right:12px; bottom:10px; width:14%; aspect-ratio:1; border:1px solid rgba(255,255,255,0.14); border-radius:6px; background:linear-gradient(135deg, rgba(53,240,220,0.10), rgba(10,10,15,0.9) 45%, rgba(255,94,94,0.10)); overflow:hidden">
+            <div style="position:absolute; inset:0; background:linear-gradient(135deg, transparent 48.6%, rgba(255,255,255,0.16) 48.6% 51.4%, transparent 51.4%)"></div>
+            <div style="position:absolute; inset:0; background:linear-gradient(45deg, transparent 43%, rgba(53,240,220,0.13) 43% 57%, transparent 57%)"></div>
+            <div style="position:absolute; inset:15%; border-top:2px solid rgba(255,255,255,0.14); border-left:2px solid rgba(255,255,255,0.14)"></div>
+            <div style="position:absolute; inset:15%; border-bottom:2px solid rgba(255,255,255,0.14); border-right:2px solid rgba(255,255,255,0.14)"></div>
+            <div style="position:absolute; left:58%; top:52%; width:7px; height:7px; border-radius:50%; background:#FFC24A; box-shadow:0 0 10px #FFC24A"></div>
+            <div style="position:absolute; left:50%; top:60%; width:5px; height:5px; border-radius:50%; background:#35F0DC"></div>
+            <div style="position:absolute; left:64%; top:46%; width:5px; height:5px; border-radius:50%; background:#FF7A7A"></div>
+            <div style="position:absolute; left:22%; top:74%; width:5px; height:5px; border-radius:50%; background:#35F0DC"></div>
+            <div style="position:absolute; left:80%; top:22%; width:5px; height:5px; border-radius:50%; background:#FF7A7A"></div>
+          </div>
+          <div style="position:absolute; left:3%; bottom:19%; display:flex; align-items:flex-end; gap:2px; height:min(34px,17cqh); width:26%; opacity:.75">
+            <sc-for list="{{ streamGold }}" as="g" hint-placeholder-count="20">
+              <div style="flex:1; border-radius:1px; height: {{ g.h }}%; background: {{ g.c }}"></div>
+            </sc-for>
+          </div>
+          <div style="position:absolute; bottom:16px; left:16px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#35F0DC; display:flex; align-items:center; gap:7px">
+            <span style="width:7px; height:7px; border-radius:50%; background:#35F0DC; animation:livePulse 1.4s infinite"></span>BARON CONTEST · 00:38
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1 1 260px; min-width:230px; border:1px solid rgba(53,240,220,0.22); border-radius:16px; background:linear-gradient(180deg, rgba(53,240,220,0.06), rgba(123,43,255,0.06)); padding:16px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; position:relative; overflow:hidden; min-height:340px; padding-top:38px">
+        <div style="position:absolute; z-index:2; top:14px; left:16px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.16em; color:#8A8DA0; text-shadow:0 1px 6px rgba(8,8,13,0.9)">SIDE PANEL · MUSE</div>
+        <div style="position:absolute; z-index:2; top:12px; right:14px; background:rgba(10,10,15,0.75); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.16em; color:#35F0DC; border:1px solid rgba(53,240,220,0.35); border-radius:5px; padding:2px 7px">{{ reactTag }}</div>
+        <img src="assets/muse-surprised.png" alt="Muse reaction" ref="{{ reactRef }}" style="width:100%; flex:1 1 0; min-height:0; object-fit:cover; object-position:50% 0%; margin-bottom:2%; -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 97%); mask-image:linear-gradient(180deg,#000 72%,transparent 97%); filter:drop-shadow(0 0 40px rgba(123,43,255,0.4)); transition:opacity .3s ease" />
+        <div style="position:relative; width:100%; background:rgba(10,10,15,0.9); border:1px solid rgba(255,255,255,0.12); border-radius:14px 14px 4px 14px; padding:12px 14px; font-size:15px; line-height:1.42; color:#E8E9F0; margin-top:-10px">{{ reactLine }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Story 03" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 03 — YOUR DEPTH</span>
+    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:22ch; text-wrap:balance">Same teamfight. The depth is yours to choose.</h2>
+    <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:56ch; margin:0 0 40px; text-wrap:pretty">Newcomers get the turning point. Veterans get the draft, the cooldowns, the wGE+ swing. One engine, two registers.</p>
+    <div style="display:flex; gap:clamp(16px,2.4vw,28px); flex-wrap:wrap">
+      <div style="flex:1 1 330px; min-width:270px; border:1px solid rgba(255,194,74,0.28); border-radius:18px; padding:clamp(18px,2vw,26px); background:linear-gradient(180deg, rgba(255,194,74,0.07), rgba(255,255,255,0.015))">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px">
+          <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:14px; color:#FFC24A">NEWCOMER MODE</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6E7288">24:10 · DRAKE</span>
+        </div>
+        <p style="font-size:clamp(16px,1.5vw,20px); line-height:1.55; color:#E8E9F0; margin:0 0 18px; text-wrap:pretty">"This dragon fight is where today's game gets decided. If T1 takes it, they get a buff that makes the next fight much easier — that's why everyone is walking down there."</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#FFC24A; background:rgba(255,194,74,0.12); border-radius:7px; padding:6px 11px">WHY IT MATTERS</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#8A8DA0; background:rgba(255,255,255,0.05); border-radius:7px; padding:6px 11px">NO JARGON</span>
+        </div>
+      </div>
+      <div style="flex:1 1 330px; min-width:270px; border:1px solid rgba(53,240,220,0.28); border-radius:18px; padding:clamp(18px,2vw,26px); background:linear-gradient(180deg, rgba(53,240,220,0.07), rgba(255,255,255,0.015))">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px">
+          <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:0.1em; font-size:14px; color:#35F0DC">VETERAN MODE</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#6E7288">24:10 · DRAKE</span>
+        </div>
+        <p style="font-family:'JetBrains Mono',monospace; font-size:clamp(13.5px,1.25vw,16px); line-height:1.6; color:#D5D7E2; margin:0 0 18px">Draft asymmetry pays out here: GEN's frontload needs the 3-item spike, T1 is 40s ahead on it. Flash down bot side, ult timers staggered 14s. wGE+ delta +1.9k despite a flat gold graph — the fight is already leaning.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#35F0DC; background:rgba(53,240,220,0.12); border-radius:7px; padding:6px 11px">wGE+ Δ +1.9k</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#35F0DC; background:rgba(53,240,220,0.12); border-radius:7px; padding:6px 11px">CD MAP</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#8A8DA0; background:rgba(255,255,255,0.05); border-radius:7px; padding:6px 11px">DRAFT LENS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Story 04" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 04 — NUMBERS WITH A STORY</span>
+    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:20ch; text-wrap:balance">The scoreboard shows what happened. Ours shows what's happening.</h2>
+    <div style="display:flex; gap:clamp(16px,2.4vw,28px); flex-wrap:wrap; margin-top:36px">
+      <div style="flex:1 1 340px; min-width:270px; border:1px solid rgba(255,255,255,0.09); border-radius:18px; padding:clamp(18px,2vw,26px); background:rgba(255,255,255,0.028)">
+        <div style="display:flex; align-items:baseline; gap:12px">
+          <span style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:30px; color:#FFC24A">PCI+</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.12em; color:#8A8DA0">MATCH CONTROL INDEX</span>
+        </div>
+        <p style="font-size:16.5px; line-height:1.58; color:#B9BCCB; margin:14px 0 20px; text-wrap:pretty">Who is holding this game — in one number. Momentum the scoreboard can't print.</p>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:8px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; width:44px; color:#E8E9F0">T1</span>
+          <div style="flex:1; height:12px; border-radius:99px; background:rgba(255,255,255,0.07); overflow:hidden"><div style="height:100%; width: {{ pciT1 }}%; background:linear-gradient(90deg,#FFC24A,#FF9F1C); box-shadow:0 0 18px rgba(255,194,74,0.45); transition:width 1.1s cubic-bezier(.2,.8,.2,1)"></div></div>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:700; color:#FFC24A; width:52px; text-align:right">{{ pciT1Label }}</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; width:44px; color:#E8E9F0">GEN</span>
+          <div style="flex:1; height:12px; border-radius:99px; background:rgba(255,255,255,0.07); overflow:hidden"><div style="height:100%; width: {{ pciGen }}%; background:linear-gradient(90deg,#4A5570,#7C89AB); transition:width 1.1s cubic-bezier(.2,.8,.2,1)"></div></div>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:700; color:#9DA1B4; width:52px; text-align:right">{{ pciGenLabel }}</span>
+        </div>
+        <p style="font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.55; color:#FFC24A; margin:20px 0 0; border-left:2px solid rgba(255,194,74,0.5); padding-left:12px">Behind on kills, PCI+ still climbing? That's the smell of a comeback.</p>
+      </div>
+
+      <div style="flex:1 1 340px; min-width:270px; border:1px solid rgba(255,255,255,0.09); border-radius:18px; padding:clamp(18px,2vw,26px); background:rgba(255,255,255,0.028)">
+        <div style="display:flex; align-items:baseline; gap:12px">
+          <span style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:30px; color:#35F0DC">wGE+</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.12em; color:#8A8DA0">WEIGHTED GOLD EARNED</span>
+        </div>
+        <p style="font-size:16.5px; line-height:1.58; color:#B9BCCB; margin:14px 0 20px; text-wrap:pretty">Not all gold is worth the same. wGE+ weighs where it landed, when, and on whom.</p>
+        <div style="height:96px; display:flex; align-items:flex-end; gap:5px">
+          <sc-for list="{{ wge }}" as="b" hint-placeholder-count="18">
+            <div style="flex:1; border-radius:3px; height: {{ b.h }}%; background: {{ b.c }}; transform-origin:bottom; transition:height .8s cubic-bezier(.2,.8,.2,1)"></div>
+          </sc-for>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11px; color:#6E7288; margin-top:8px">
+          <span>10:00</span><span>18:00</span><span>24:10</span>
+        </div>
+        <p style="font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.55; color:#35F0DC; margin:20px 0 0; border-left:2px solid rgba(53,240,220,0.5); padding-left:12px">Gold diff reads 0, wGE+ reads +1.9k. The game already tilted.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Story 05" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto">
+    <div style="display:flex; gap:clamp(28px,4vw,64px); align-items:center; flex-wrap:wrap-reverse">
+      <div style="flex:1 1 290px; display:flex; justify-content:center; position:relative; min-width:240px">
+        <div style="position:absolute; bottom:8%; width:min(300px,80%); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle, rgba(123,43,255,0.28), transparent 66%)"></div>
+        <img src="assets/muse-excited.png" alt="Muse" style="position:relative; width:100%; max-width:300px; height:auto; -webkit-mask-image:linear-gradient(180deg,#000 74%,transparent 98%); mask-image:linear-gradient(180deg,#000 74%,transparent 98%); filter:drop-shadow(0 20px 44px rgba(0,0,0,0.6))" />
+      </div>
+      <div style="flex:1 1 380px; min-width:0">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">STEP 05 — SHE REMEMBERS YOU</span>
+        <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; text-wrap:balance">Free reacts to the match. Plus reacts to <span style="color:#FFC24A">you</span>.</h2>
+        <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:52ch; margin:0 0 28px; text-wrap:pretty">Your team, your player, the matchup that ruined your last three splits. Muse keeps it, and every match starts closer to where you left off.</p>
+        <div style="display:flex; flex-direction:column; gap:12px; max-width:520px">
+          <div style="display:flex; gap:14px; align-items:flex-start; border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:14px 16px; background:rgba(255,255,255,0.025)">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#8A8DA0; padding-top:3px; flex:none">FREE</span>
+            <span style="font-size:15.5px; line-height:1.5; color:#D5D7E2">Live reactions, plain-language calls, PCI+ at a glance. Enough to follow any game again.</span>
+          </div>
+          <div style="display:flex; gap:14px; align-items:flex-start; border:1px solid rgba(255,194,74,0.32); border-radius:14px; padding:14px 16px; background:linear-gradient(90deg, rgba(255,194,74,0.09), rgba(255,255,255,0.02))">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#FFC24A; padding-top:3px; flex:none">PLUS</span>
+            <span style="font-size:15.5px; line-height:1.5; color:#E8E9F0">Remembers your team, tunes her depth to you, and keeps the thread between matches.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formfactor" data-screen-label="Form factor" data-reveal="1" style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,56px); max-width:1280px; margin:0 auto; border-top:1px solid rgba(255,255,255,0.06)">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.24em; color:#6E7288">THE FORM FACTOR</span>
+    <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(30px,4.2vw,58px); line-height:1.03; letter-spacing:-0.015em; margin:14px 0 18px; max-width:20ch; text-wrap:balance">A second layer on the screen you already watch.</h2>
+    <p style="font-size:clamp(15px,1.35vw,19px); line-height:1.6; color:#9DA1B4; max-width:56ch; margin:0 0 44px; text-wrap:pretty">One click from the Chrome Web Store. Works beside YouTube, CHZZK and Twitch — no overlay, no second monitor, no alt-tab.</p>
+
+    <div style="border:1px solid rgba(255,255,255,0.09); border-radius:18px; overflow:hidden; background:#08080D">
+      <div style="display:flex; align-items:center; gap:8px; padding:11px 16px; background:rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.07)">
+        <span style="width:9px; height:9px; border-radius:50%; background:#FF5F57"></span><span style="width:9px; height:9px; border-radius:50%; background:#FFBD2E"></span><span style="width:9px; height:9px; border-radius:50%; background:#28C840"></span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#6E7288; margin-left:10px">LCK 2026 Summer · T1 vs GEN · Game 3</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap">
+        <div style="flex:2 1 460px; min-width:280px; position:relative; aspect-ratio:16/9; overflow:hidden; container-type:size; background:linear-gradient(160deg,#101623,#080810 60%); border-right:1px solid rgba(255,255,255,0.07)">
+          <div style="position:absolute; inset:0; background:repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 52px), repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 52px)"></div>
+          <div style="position:absolute; inset:0; background:radial-gradient(440px 280px at 58% 60%, rgba(255,194,74,0.15), transparent 70%), radial-gradient(320px 220px at 30% 42%, rgba(53,240,220,0.09), transparent 70%)"></div>
+          <div style="position:absolute; top:12px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:12px; background:rgba(8,8,13,0.82); border:1px solid rgba(255,255,255,0.1); border-radius:9px; padding:7px 14px; font-family:'JetBrains Mono',monospace">
+            <span style="color:#E8E9F0; font-weight:700; font-size:13px">T1</span>
+            <span style="color:#FFC24A; font-weight:700; font-size:16px">14</span>
+            <span style="color:#6E7288; font-size:11px">24:10</span>
+            <span style="color:#FFC24A; font-weight:700; font-size:16px">11</span>
+            <span style="color:#E8E9F0; font-weight:700; font-size:13px">GEN</span>
+          </div>
+          <div style="position:absolute; top:33%; left:2.5%; display:flex; flex-direction:column; gap:2.4%; max-height:52%">
+            <sc-for list="{{ blueTeam }}" as="p" hint-placeholder-count="5">
+              <div style="width:min(24px,7.5cqh); height:min(24px,7.5cqh); border-radius:4px; border:1px solid rgba(53,240,220,0.45); background: {{ p.bg }}"></div>
+            </sc-for>
+          </div>
+          <div style="position:absolute; top:33%; right:2.5%; display:flex; flex-direction:column; gap:2.4%; max-height:52%">
+            <sc-for list="{{ redTeam }}" as="p" hint-placeholder-count="5">
+              <div style="width:min(24px,7.5cqh); height:min(24px,7.5cqh); border-radius:4px; border:1px solid rgba(255,94,94,0.45); background: {{ p.bg }}"></div>
+            </sc-for>
+          </div>
+          <div style="position:absolute; right:10px; bottom:10px; width:19%; aspect-ratio:1; border:1px solid rgba(255,255,255,0.14); border-radius:6px; background:linear-gradient(135deg, rgba(53,240,220,0.10), rgba(10,10,15,0.9) 45%, rgba(255,94,94,0.10)); overflow:hidden">
+            <div style="position:absolute; inset:0; background:linear-gradient(135deg, transparent 48.6%, rgba(255,255,255,0.16) 48.6% 51.4%, transparent 51.4%)"></div>
+            <div style="position:absolute; inset:0; background:linear-gradient(45deg, transparent 43%, rgba(53,240,220,0.13) 43% 57%, transparent 57%)"></div>
+            <div style="position:absolute; inset:15%; border-top:2px solid rgba(255,255,255,0.14); border-left:2px solid rgba(255,255,255,0.14)"></div>
+            <div style="position:absolute; inset:15%; border-bottom:2px solid rgba(255,255,255,0.14); border-right:2px solid rgba(255,255,255,0.14)"></div>
+            <div style="position:absolute; left:56%; top:54%; width:7px; height:7px; border-radius:50%; background:#FFC24A; box-shadow:0 0 10px #FFC24A"></div>
+            <div style="position:absolute; left:48%; top:62%; width:5px; height:5px; border-radius:50%; background:#35F0DC"></div>
+            <div style="position:absolute; left:66%; top:44%; width:5px; height:5px; border-radius:50%; background:#FF7A7A"></div>
+          </div>
+          <div style="position:absolute; bottom:14px; left:14px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; color:#35F0DC; display:flex; align-items:center; gap:7px">
+            <span style="width:7px; height:7px; border-radius:50%; background:#35F0DC; animation:livePulse 1.4s infinite"></span>BARON · 00:38
+          </div>
+        </div>
+        <div style="flex:1 1 300px; min-width:260px; padding:16px; display:flex; flex-direction:column; gap:12px; background:linear-gradient(180deg, rgba(123,43,255,0.07), rgba(10,10,15,0))">
+          <div style="display:flex; align-items:center; gap:10px">
+            <img src="assets/muse-head2.png" alt="Muse" style="width:36px; height:36px; border-radius:50%; object-fit:cover; object-position:50% 18%; border:1px solid rgba(53,240,220,0.4)" />
+            <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; letter-spacing:0.06em; font-size:14px">MUSE</span>
+            <span style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#35F0DC">LIVE</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px 12px 12px 4px; padding:11px 13px; font-size:14.5px; line-height:1.45; color:#D5D7E2">Baron in 40 seconds and GEN has no flash bot. This is the play.</div>
+          <div style="border:1px solid rgba(255,194,74,0.3); border-radius:12px; padding:12px 13px; background:rgba(255,194,74,0.07)">
+            <div style="display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.12em; color:#8A8DA0"><span>PCI+</span><span>T1</span></div>
+            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:24px; color:#FFC24A; margin-top:3px">63.4</div>
+            <div style="height:6px; border-radius:99px; background:rgba(255,255,255,0.08); margin-top:9px; overflow:hidden"><div style="height:100%; width:63%; background:#FFC24A; box-shadow:0 0 14px rgba(255,194,74,0.5)"></div></div>
+          </div>
+          <div style="margin-top:auto; display:flex; align-items:center; gap:9px; border:1px solid rgba(255,255,255,0.1); border-radius:11px; padding:10px 12px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#5C6076">
+            <span style="color:#35F0DC">&gt;</span>ask about this fight…
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:clamp(14px,2vw,24px); flex-wrap:wrap; margin-top:28px">
+      <sc-for list="{{ steps }}" as="step" hint-placeholder-count="3">
+        <div style="flex:1 1 240px; min-width:220px; border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:18px 20px; background:rgba(255,255,255,0.025); display:flex; gap:14px; align-items:flex-start">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#35F0DC; border:1px solid rgba(53,240,220,0.35); border-radius:7px; padding:4px 8px; flex:none">{{ step.n }}</span>
+          <div>
+            <div style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:17px; margin-bottom:5px">{{ step.t }}</div>
+            <div style="font-size:14.5px; line-height:1.45; color:#8A8DA0">{{ step.d }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="install-section" data-screen-label="Final CTA" data-reveal="1" style="position:relative; padding:clamp(70px,9vw,120px) clamp(16px,4vw,56px) clamp(50px,6vw,80px); max-width:1280px; margin:0 auto">
+    <div style="border:1px solid rgba(53,240,220,0.22); border-radius:26px; background:radial-gradient(900px 400px at 70% 110%, rgba(123,43,255,0.22), transparent 70%), linear-gradient(180deg, rgba(53,240,220,0.06), rgba(255,255,255,0.015)); padding:clamp(28px,4vw,60px); display:flex; gap:clamp(24px,4vw,56px); align-items:center; flex-wrap:wrap; overflow:hidden">
+      <div style="flex:1 1 380px; min-width:0">
+        <h2 style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(32px,4.6vw,64px); line-height:1.02; letter-spacing:-0.02em; margin:0 0 18px; text-wrap:balance">From the next match on, let's watch together.</h2>
+        <p style="font-size:clamp(15px,1.4vw,19px); line-height:1.55; color:#9DA1B4; max-width:44ch; margin:0 0 30px; text-wrap:pretty">Free to install. Muse is waiting in the side panel.</p>
+        <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:12px; padding:17px 30px; border-radius:14px; background:#35F0DC; color:#04141A; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:clamp(16px,1.6vw,20px); letter-spacing:0.01em; box-shadow:0 0 46px rgba(53,240,220,0.3)" style-hover="background:#8CFFF1">
+          <span style="width:10px; height:10px; border-radius:50%; background:#04141A; display:inline-block"></span>Add RORR to Chrome
+        </a>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#6E7288; margin-top:14px">Desktop Chrome required · On mobile, open this page on desktop to install</div>
+      </div>
+      <div style="flex:0 1 300px; display:flex; justify-content:center; position:relative; min-width:230px">
+        <div style="position:absolute; bottom:0; width:min(330px,90%); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle, rgba(53,240,220,0.22), transparent 65%)"></div>
+        <img src="assets/muse-cheer2.png" alt="Muse" style="position:relative; width:100%; max-width:320px; height:auto; animation:museFloat 8s ease-in-out infinite; -webkit-mask-image:linear-gradient(180deg,#000 78%,transparent 99%); mask-image:linear-gradient(180deg,#000 78%,transparent 99%); filter:drop-shadow(0 24px 54px rgba(123,43,255,0.4))" />
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer" style="border-top:1px solid rgba(255,255,255,0.07); padding:clamp(40px,5vw,68px) clamp(16px,4vw,56px) 120px; background:rgba(6,6,10,0.6)">
+    <div style="max-width:1280px; margin:0 auto; display:flex; gap:clamp(24px,4vw,60px); flex-wrap:wrap; align-items:flex-start">
+      <div style="flex:1 1 260px">
+        <img src="assets/rorr-logo.png" alt="RORR" style="height:30px; width:auto; display:block; opacity:0.9" />
+        <p style="font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.1em; color:#6E7288; margin:14px 0 0; max-width:34ch; line-height:1.6">REAL-TIME LIVE EVENT ONTOLOGY ENGINE · FIRST APPLICATION: RORR</p>
+      </div>
+      <div style="flex:1 1 200px; display:flex; flex-direction:column; gap:10px">
+        <a href="https://rorr.club/terms" target="_blank" rel="noopener" style="font-size:14.5px; color:#9DA1B4" style-hover="color:#E8E9F0">Terms of Service</a>
+        <a href="https://rorr.club/privacy" target="_blank" rel="noopener" style="font-size:14.5px; color:#9DA1B4" style-hover="color:#E8E9F0">Privacy Policy</a>
+        <a href="mailto:info@rorr.club" style="font-size:14.5px; color:#9DA1B4" style-hover="color:#E8E9F0">Partnership Inquiries</a>
+        <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="font-size:14.5px; color:#9DA1B4" style-hover="color:#E8E9F0">Chrome Web Store</a>
+      </div>
+    </div>
+    <div style="max-width:1280px; margin:36px auto 0; padding-top:22px; border-top:1px solid rgba(255,255,255,0.06); display:flex; flex-direction:column; gap:7px">
+      <p style="margin:0; font-size:11.5px; line-height:1.6; color:#5C6076; max-width:110ch">RORR isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties.</p>
+      <p style="margin:0; font-size:11.5px; line-height:1.6; color:#5C6076; max-width:110ch">League of Legends, LCK and all related logos and names are trademarks or registered trademarks of Riot Games, Inc. and their respective owners. Team, player and league marks shown here belong to their respective rights holders.</p>
+      <p style="margin:0; font-size:11.5px; line-height:1.6; color:#5C6076; max-width:110ch">Match data is provided under an official Live Stats agreement. PCI+, wGE+ and other derived metrics are calculated by us and are not official records.</p>
+      <div style="display:flex; flex-direction:column; gap:3px; margin-top:6px">
+        <p style="margin:0; font-size:11.5px; line-height:1.6; color:#7A7F94">Pitch Interactive Inc. · Business reg. 444-87-03154 · Representative: MANSOO CHO · +82-507-1355-8549</p>
+        <p style="margin:0; font-size:11.5px; line-height:1.6; color:#7A7F94">4F, Office Building, Pangyo Global Biz Center, 43, Changup-ro, Sujeong-gu, Seongnam-si, Gyeonggi-do, 13449, Republic of Korea</p>
+      </div>
+      <p style="margin:0; font-size:11.5px; line-height:1.6; color:#4A4E62">Copyright 2026 Pitch Interactive Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; left:0; right:0; bottom:0; z-index:60; display:flex; align-items:center; justify-content:center; gap:clamp(12px,2vw,26px); flex-wrap:wrap; padding:12px clamp(14px,3vw,32px); background:rgba(10,10,15,0.86); backdrop-filter:blur(16px); border-top:1px solid rgba(53,240,220,0.22)">
+      <span style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:clamp(14px,1.4vw,17px); color:#E8E9F0">Next match starts without you. Or with Muse.</span>
+      <a href="https://chromewebstore.google.com/detail/rorr/aeijenbcnhhmcgknnimiddbdgpndfcpn" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:9px; padding:11px 22px; border-radius:11px; background:#35F0DC; color:#04141A; font-weight:700; font-size:14.5px; white-space:nowrap" style-hover="background:#8CFFF1">Add to Chrome</a>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
+const GOLD = '#FFC24A', CYAN = '#35F0DC', DIM = 'rgba(255,255,255,0.16)';
+
+const QA = [
+  {
+    tier: 'NEW',
+    q: "I barely know League — what matters right now?",
+    a: "Everything hinges on the Baron attempt in about 40 seconds. GEN used two flashes bot side, so T1 can start it safely. If they get it, they walk into the next fight with a buff that ends games.",
+    cards: [
+      { label: 'PCI+ · T1', sub: 'CONTROL', value: '63.4', color: GOLD, hasBar: true, pct: 63 },
+      { label: 'WIN PRESSURE', sub: 'Δ 2 MIN', value: '+18%', color: CYAN, hasBar: true, pct: 71 }
+    ]
+  },
+  {
+    tier: 'FAN',
+    q: "Why did we just lose that teamfight?",
+    a: "You lost it at the setup, not in the fight. GEN got vision 12 seconds earlier and forced it while your jungler was still crossing river — a 4v5 for the first three seconds, which is the whole fight.",
+    cards: [
+      { label: 'FIGHT ENTRY', sub: 'DELAY', value: '3.1s', color: GOLD, hasBar: true, pct: 34 },
+      { label: 'wGE+ Δ', sub: 'POST-FIGHT', value: '-2.4k', color: CYAN, hasSpark: true, bars: [42, 48, 51, 46, 44, 39, 30, 26, 22, 18, 15, 12].map((h, i) => ({ h, c: i > 6 ? 'rgba(53,240,220,0.35)' : CYAN })) }
+    ]
+  },
+  {
+    tier: 'DEEP',
+    q: "Is T1's gold lead actually meaningful yet?",
+    a: "The raw 1.2k lead isn't the story — where it sits is. wGE+ puts +1.9k of weighted value on T1 because it's concentrated on the two carries who spike this item. Flat gold graph, tilted game.",
+    cards: [
+      { label: 'GOLD DIFF', sub: 'RAW', value: '+1.2k', color: 'rgba(232,233,240,0.9)', hasBar: true, pct: 54 },
+      { label: 'wGE+', sub: 'WEIGHTED', value: '+1.9k', color: CYAN, hasBar: true, pct: 74 }
+    ]
+  },
+  {
+    tier: 'PRO',
+    q: "Who won the draft?",
+    a: "GEN won it on paper, T1 won it on timing. GEN's comp scales past 30 minutes, but T1 stacked three power spikes between 22 and 27 — this Baron window is exactly the slot their draft was built for.",
+    cards: [
+      { label: 'DRAFT EDGE', sub: '0-25 MIN', value: 'T1', color: GOLD, hasBar: true, pct: 66 },
+      { label: 'DRAFT EDGE', sub: '30+ MIN', value: 'GEN', color: CYAN, hasBar: true, pct: 61 }
+    ]
+  }
+];
+
+const REACTS = [
+  { src: 'assets/muse-surprised.png', line: "No way — they flipped the drake with 200 HP left?!", tag: 'SHOCK' },
+  { src: 'assets/muse-thinking.png', line: "Hold on. Their jungler hasn't shown for 40 seconds…", tag: 'READ' },
+  { src: 'assets/muse-waving.png', line: "Baron's up in 40. Stay with me — this is the play.", tag: 'CALL' }
+];
+
+class Component extends DCLogic {
+  state = {
+    typed: '', answer: '', cards: [], streaming: false, showCaret: false,
+    reactIdx: 0, qi: 0, showBar: false, pciT1: 38, pciGen: 62, wgeSeed: 0
+  };
+
+  renderVals() {
+    const s = this.state;
+    const wgeBase = [30, 34, 32, 38, 41, 37, 44, 48, 45, 52, 49, 58, 62, 57, 66, 72, 68, 78];
+    return {
+      bgRef: (el) => { this._canvas = el; },
+      typed: s.typed,
+      showCaret: !!s.typed && !s.streaming,
+      showHint: !s.typed,
+      answer: s.answer,
+      streaming: s.streaming,
+      cards: s.cards,
+      onSend: () => this.ask((s.qi + 1) % QA.length),
+      chips: QA.map((item, i) => {
+        const on = i === s.qi;
+        return {
+          tier: item.tier, q: item.q, pick: () => this.ask(i),
+          bd: on ? 'rgba(53,240,220,0.75)' : 'rgba(255,255,255,0.1)',
+          bg: on ? 'rgba(53,240,220,0.12)' : 'rgba(255,255,255,0.04)',
+          fg: on ? '#E8E9F0' : '#B9BCCB',
+          tc: on ? '#35F0DC' : '#6E7288',
+          sh: on ? '0 0 22px rgba(53,240,220,0.22)' : 'none'
+        };
+      }),
+      reactRef: (el) => { this._reactImg = el; },
+      reactLine: REACTS[s.reactIdx].line,
+      reactTag: REACTS[s.reactIdx].tag,
+      pciT1: s.pciT1, pciGen: s.pciGen,
+      pciT1Label: s.pciT1.toFixed(1),
+      pciGenLabel: s.pciGen.toFixed(1),
+      wge: wgeBase.map((h, i) => ({
+        h: s.wgeSeed ? Math.min(96, h + (i > 9 ? 14 : 2)) : h,
+        c: i > 9 ? CYAN : 'rgba(53,240,220,0.35)'
+      })),
+      blueTeam: [
+        { lv: 14, hp: 82, bg: 'linear-gradient(140deg,#2A3B57,#101826)' },
+        { lv: 15, hp: 64, bg: 'linear-gradient(140deg,#1F4A52,#0E1C22)' },
+        { lv: 15, hp: 91, bg: 'linear-gradient(140deg,#3A3357,#141020)' },
+        { lv: 13, hp: 47, bg: 'linear-gradient(140deg,#4A3B2A,#1E1610)' },
+        { lv: 13, hp: 73, bg: 'linear-gradient(140deg,#25415A,#0E1620)' }
+      ],
+      redTeam: [
+        { lv: 14, hp: 55, bg: 'linear-gradient(140deg,#57262A,#200E10)' },
+        { lv: 14, hp: 38, bg: 'linear-gradient(140deg,#4A2A3B,#1C1018)' },
+        { lv: 15, hp: 88, bg: 'linear-gradient(140deg,#573A26,#20140C)' },
+        { lv: 12, hp: 21, bg: 'linear-gradient(140deg,#3B2A57,#161020)' },
+        { lv: 13, hp: 66, bg: 'linear-gradient(140deg,#572E26,#20100C)' }
+      ],
+      streamGold: [34, 30, 38, 41, 36, 44, 40, 48, 52, 46, 55, 60, 54, 63, 58, 68, 74, 70, 79, 86]
+        .map((h, i) => ({ h, c: i > 12 ? '#FFC24A' : 'rgba(255,194,74,0.4)' })),
+      steps: [
+        { n: '01', t: 'Install', d: 'One click from the Chrome Web Store. No account needed to start.' },
+        { n: '02', t: 'Open a stream', d: 'YouTube, CHZZK or Twitch — any live LCK broadcast.' },
+        { n: '03', t: 'Muse appears', d: 'The side panel opens next to the video and syncs to the match clock.' }
+      ],
+      showBar: s.showBar
+    };
+  }
+
+  ask(i) {
+    this.setState({ qi: i });
+    this.run(QA[i]);
+  }
+
+  run(item) {
+    this.clearTimers();
+    this.setState({ typed: '', answer: '', cards: [], streaming: false });
+    const q = item.q;
+    let i = 0;
+    const type = () => {
+      i++;
+      this.setState({ typed: q.slice(0, i) });
+      if (i < q.length) this._t.push(setTimeout(type, 16 + Math.random() * 22));
+      else this._t.push(setTimeout(() => this.stream(item), 380));
+    };
+    this._t.push(setTimeout(type, 90));
+  }
+
+  stream(item) {
+    const words = item.a.split(' ');
+    let i = 0;
+    this.setState({ streaming: true });
+    const step = () => {
+      i += 1 + Math.floor(Math.random() * 2);
+      this.setState({ answer: words.slice(0, i).join(' ') });
+      if (i < words.length) this._t.push(setTimeout(step, 42));
+      else this._t.push(setTimeout(() => this.setState({ streaming: false, cards: item.cards }), 220));
+    };
+    step();
+  }
+
+  clearTimers() {
+    (this._t || []).forEach(clearTimeout);
+    this._t = [];
+  }
+
+  componentDidMount() {
+    this._t = [];
+    this._t.push(setTimeout(() => this.ask(0), 900));
+
+    this._react = setInterval(() => {
+      const next = (this.state.reactIdx + 1) % REACTS.length;
+      this.setState({ reactIdx: next });
+      if (this._reactImg) this._reactImg.src = REACTS[next].src;
+    }, 3200);
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const show = y > window.innerHeight * 1.3;
+      if (show !== this.state.showBar) this.setState({ showBar: show });
+      this._scrollY = y;
+    };
+    this._onScroll = onScroll;
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // reveal on enter + metric animation
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(26px)';
+      el.style.transition = 'opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1)';
+    });
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        if (e.target.getAttribute('data-screen-label') === 'Story 04' && !this.state.wgeSeed) {
+          this.setState({ pciT1: 63.4, pciGen: 36.6, wgeSeed: 1 });
+        }
+        this._io.unobserve(e.target);
+      });
+    }, { threshold: 0.15 });
+    els.forEach((el) => this._io.observe(el));
+
+    this.initBackground();
+  }
+
+  componentWillUnmount() {
+    this.clearTimers();
+    clearInterval(this._react);
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+    cancelAnimationFrame(this._raf);
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('pointermove', this._onMove);
+  }
+
+  initBackground() {
+    const cv = this._canvas;
+    if (!cv) return;
+    const ctx = cv.getContext('2d');
+    if (!ctx) return;
+    const N = 96;
+    const nodes = [];
+    for (let i = 0; i < N; i++) {
+      const t = (i + 0.5) / N;
+      const phi = Math.acos(1 - 2 * t);
+      const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+      const sph = [Math.sin(phi) * Math.cos(theta), Math.sin(phi) * Math.sin(theta), Math.cos(phi)];
+      const col = i % 12, row = Math.floor(i / 12);
+      const grid = [(col / 11 - 0.5) * 2.1, (row / 7 - 0.5) * 1.1, Math.sin(col * 0.7) * 0.35];
+      const a = i * 0.36;
+      const helix = [Math.cos(a) * 0.85, (i / N - 0.5) * 2.3, Math.sin(a) * 0.85];
+      nodes.push({ shapes: [sph, grid, helix], p: sph.slice(), r: 0.6 + Math.random() * 1.1, gold: i % 9 === 0 });
+    }
+    const edges = [];
+    for (let i = 0; i < N; i++) {
+      const d = nodes.map((n, j) => [j, Math.hypot(...n.shapes[0].map((v, k) => v - nodes[i].shapes[0][k]))]);
+      d.sort((a, b) => a[1] - b[1]);
+      for (let k = 1; k <= 2; k++) if (d[k]) edges.push([i, d[k][0]]);
+    }
+
+    let dpr = 1, W = 0, H = 0;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    this._onResize = resize;
+    resize();
+    window.addEventListener('resize', resize);
+
+    const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+    this._onMove = (e) => {
+      mouse.tx = (e.clientX / window.innerWidth - 0.5);
+      mouse.ty = (e.clientY / window.innerHeight - 0.5);
+    };
+    window.addEventListener('pointermove', this._onMove, { passive: true });
+
+    let ry = 0, morph = 0, target = 0;
+    const tick = (ts) => {
+      const y = this._scrollY || window.scrollY || 0;
+      const vh = window.innerHeight || 1;
+      const prog = y / vh;
+      target = prog < 1.2 ? 0 : prog < 3.4 ? 1 : 2;
+      morph += (target - morph) * 0.02;
+      mouse.x += (mouse.tx - mouse.x) * 0.05;
+      mouse.y += (mouse.ty - mouse.y) * 0.05;
+      ry += 0.0016;
+
+      const mi = Math.floor(morph), mf = morph - mi;
+      const scale = Math.min(W, H) * 0.42;
+      const cx = W * 0.5 + mouse.x * 60;
+      const cy = H * 0.48 + mouse.y * 40 - (prog % 1) * 40;
+      const cosY = Math.cos(ry), sinY = Math.sin(ry);
+      const tilt = 0.28 + mouse.y * 0.3, cosX = Math.cos(tilt), sinX = Math.sin(tilt);
+
+      const proj = nodes.map((n) => {
+        const a = n.shapes[Math.min(mi, 2)], b = n.shapes[Math.min(mi + 1, 2)];
+        let x = a[0] + (b[0] - a[0]) * mf, yy = a[1] + (b[1] - a[1]) * mf, z = a[2] + (b[2] - a[2]) * mf;
+        let x1 = x * cosY - z * sinY, z1 = x * sinY + z * cosY;
+        let y1 = yy * cosX - z1 * sinX, z2 = yy * sinX + z1 * cosX;
+        const persp = 2.6 / (2.6 + z2);
+        return { x: cx + x1 * scale * persp, y: cy + y1 * scale * persp, s: persp, gold: n.gold, r: n.r };
+      });
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.lineWidth = 1;
+      for (const [i, j] of edges) {
+        const a = proj[i], b = proj[j];
+        const alpha = Math.max(0, (a.s - 0.62)) * 0.22;
+        if (alpha <= 0.002) continue;
+        ctx.strokeStyle = 'rgba(53,240,220,' + alpha.toFixed(3) + ')';
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      }
+      for (const p of proj) {
+        const alpha = Math.max(0, (p.s - 0.6)) * 0.85;
+        ctx.fillStyle = p.gold ? 'rgba(255,194,74,' + (alpha * 0.9).toFixed(3) + ')' : 'rgba(53,240,220,' + (alpha * 0.7).toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r * p.s, 0, 6.3); ctx.fill();
+      }
+      this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+  }
+}
+
+</script>
+</body>
+</html>
